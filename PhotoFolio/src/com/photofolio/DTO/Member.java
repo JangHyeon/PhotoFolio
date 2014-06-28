@@ -1,14 +1,16 @@
 package com.photofolio.DTO;
 
 public class Member {
-		private String id ;//¼¼¼Ç»ý¼ºÇÒ°Í
-		private int level;//¼¼¼Ç»ý¼ºÇÒ°Í
-		private String nickname;//¼¼¼Ç»ý¼ºÇÒ°Í
+		private String id ;
+		private int level;
+		private String nickname;
 		private String email;
 		private int phone;
 		private String address;
 		private String profileimg;
 		private String memo;
+		private int like;  //â˜… ì¶”ê°€í•¨
+		
 		public String getId() {
 			return id; 
 		}
@@ -56,6 +58,12 @@ public class Member {
 		}
 		public void setMemo(String memo) {
 			this.memo = memo;
+		}
+		public int getLike() {
+			return like;
+		}
+		public void setLike(int like) {
+			this.like = like;
 		}
 		
 		
