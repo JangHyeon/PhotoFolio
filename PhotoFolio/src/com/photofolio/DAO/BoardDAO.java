@@ -196,7 +196,7 @@ public class BoardDAO {
 				dto.setLevel(rs.getInt("lvl"));
 				dto.setNickname(rs.getString("nickname"));
 				dto.setEmail(rs.getString("email"));
-				dto.setPhone(rs.getInt("phone"));
+				dto.setPhone(rs.getString("phone"));
 				dto.setAddress(rs.getString("address"));
 				dto.setProfileimg(rs.getString("profileimg"));
 			}

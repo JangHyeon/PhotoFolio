@@ -28,11 +28,11 @@ public class ConnectionHelper {
 			}
 		}
 	}
-	public static void close(PreparedStatement psmts)
+	public static void close(PreparedStatement pstmt)
 	{
-		if(psmts != null){
+		if(pstmt != null){
 			try{
-				psmts.close();
+				pstmt.close();
 			}catch(SQLException e)
 			{
 				e.printStackTrace();

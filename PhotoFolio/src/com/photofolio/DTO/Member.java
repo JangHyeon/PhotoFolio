@@ -1,15 +1,39 @@
 package com.photofolio.DTO;
 
 public class Member {
-		private String id;
+		private String id ;
 		private int level;
 		private String nickname;
 		private String pwd;
 		private String email;
-		private int phone;
+		private String phone;
 		private String address;
 		private String profileimg;
 		private String memo;
+		private String homepage;
+		public String getHomepage() {
+			return homepage;
+		}
+		public void setHomepage(String homepage) {
+			this.homepage = homepage;
+		}
+		public String getCmemo() {
+			return cmemo;
+		}
+		public void setCmemo(String cmemo) {
+			this.cmemo = cmemo;
+		}
+		public String getHistory() {
+			return history;
+		}
+		public void setHistory(String history) {
+			this.history = history;
+		}
+		private String cmemo;
+		private String history;
+		
+		
+		
 		public String getId() {
 			return id; 
 		}
@@ -28,16 +52,22 @@ public class Member {
 		public void setNickname(String nickname) {
 			this.nickname = nickname;
 		}
+		public String getPwd() {
+			return pwd;
+		}
+		public void setPwd(String pwd) {
+			this.pwd = pwd;
+		}
 		public String getEmail() {
 			return email;
 		}
 		public void setEmail(String email) {
 			this.email = email;
 		}
-		public int getPhone() {
+		public String getPhone() {
 			return phone;
 		}
-		public void setPhone(int phone) {
+		public void setPhone(String phone) {
 			this.phone = phone;
 		}
 		public String getAddress() {
@@ -58,12 +88,4 @@ public class Member {
 		public void setMemo(String memo) {
 			this.memo = memo;
 		}
-		public String getPwd() {
-			return pwd;
-		}
-		public void setPwd(String pwd) {
-			this.pwd = pwd;
-		}
-		
-		
 }
