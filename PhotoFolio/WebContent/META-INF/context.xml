@@ -50,7 +50,7 @@
                 maxActive="100" 
                 maxIdle="20" 
                 maxWait="-1"
-                username="samplUser"
-                password="1004"
-                url="jdbc:mysql://localhost:3306/sampledb"/>
+                username="photofolio"
+                password=""
+                url="jdbc:mysql://localhost:3306/photofolio"/>
 </Context>

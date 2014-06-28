@@ -1,9 +1,10 @@
 package com.photofolio.DTO;
 
 public class Member {
-		private String id ;//技记积己且巴
-		private int level;//技记积己且巴
-		private String nickname;//技记积己且巴
+		private String id;
+		private int level;
+		private String nickname;
+		private String pwd;
 		private String email;
 		private int phone;
 		private String address;
@@ -56,6 +57,12 @@ public class Member {
 		}
 		public void setMemo(String memo) {
 			this.memo = memo;
+		}
+		public String getPwd() {
+			return pwd;
+		}
+		public void setPwd(String pwd) {
+			this.pwd = pwd;
 		}
 		
 		

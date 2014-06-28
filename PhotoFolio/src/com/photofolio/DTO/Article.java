@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Article {
 
-		private int index;
+		private int idx;
 		private String id;
 		private String subject;
 		private String content;
@@ -12,13 +12,20 @@ public class Article {
 		private int count;
 		private int like;
 		private int report;
-		private String tag;
 		private int secret;
-		public int getIndex() {
-			return index;
+		private String thumbnail;
+		
+		public String getThumbnail() {
+			return thumbnail;
 		}
-		public void setIndex(int index) {
-			this.index = index;
+		public void setThumbnail(String thumbnail) {
+			this.thumbnail = thumbnail;
+		}
+		public int getIdx() {
+			return idx;
+		}
+		public void setIdx(int idx) {
+			this.idx = idx;
 		}
 		public String getId() {
 			return id;
@@ -62,17 +69,10 @@ public class Article {
 		public void setReport(int report) {
 			this.report = report;
 		}
-		public String getTag() {
-			return tag;
-		}
-		public void setTag(String tag) {
-			this.tag = tag;
-		}
 		public int getSecret() {
 			return secret;
 		}
 		public void setSecret(int secret) {
 			this.secret = secret;
 		}
-		
 }

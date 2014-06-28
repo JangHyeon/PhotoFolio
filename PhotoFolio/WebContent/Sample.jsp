@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*"%>
+<%@ page import="javax.sql.*"%>
+<%@ page import="javax.naming.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +16,20 @@
 
 		<div id="main">
 			<div>
-				<h2>dfdfdf</h2>
+				
+<%
+	System.out.println("asd");
+    Connection conn=null;
+    try{
+        Context init = new InitialContext();
+        DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/mysql");
+        conn = ds.getConnection();
+        out.println("Success!!!");
+    }catch(Exception e){
+        out.println("Failure!!!");
+        e.printStackTrace();
+    }
+%>
 			</div>
 			
 		</div>

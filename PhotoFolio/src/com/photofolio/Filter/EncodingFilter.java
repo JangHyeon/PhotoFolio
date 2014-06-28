@@ -24,9 +24,10 @@ public class EncodingFilter implements Filter{
 		
 		if(req.getCharacterEncoding() == null){
 			req.setCharacterEncoding(this.Encoding);
-			System.out.println("after :" + req.getCharacterEncoding());
+			//System.out.println("after :" + req.getCharacterEncoding());
 		}
-		Chain.doFilter(req, res);//
+		Chain.doFilter(req, res);
+		//System.out.println("response");
 	}
 
 	

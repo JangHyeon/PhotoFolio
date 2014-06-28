@@ -1,4 +1,4 @@
-CREATE TABLE member (
+ï»¿CREATE TABLE member (
 id varchar(15) NOT NULL,
 pwd varchar(50) NOT NULL,
 lvl int(1) unsigned DEFAULT '0',
@@ -13,12 +13,20 @@ PRIMARY KEY (id),
 UNIQUE (nickname)
 ) DEFAULT CHARSET=utf8;
 
+alter table member modify phone varchar(12);
+commit
+
+desc member
+
+
 drop table member;
 
 select * from member;
 
-insert into member(id,pwd,nickname,email,phone) values('admin','admin','¿î¿µÀÚ','seonghyeonzzing@naver.com','112119114');
-insert into member(id,pwd,nickname,email,phone) values('user','1004','À¯Á®','Áö¸¸Â¯123@naver.com','15885588');
+insert into member(id,pwd,nickname,email,phone) values('admin','admin','ìš´ì˜ì','seonghyeonzzing@naver.com','112119114');
+insert into member(id,pwd,nickname,email,phone) values('user','1004','ì‚¬ìš©ì','ì´ë©”ì¼123@naver.com','15885588');
+insert into member(id,pwd,lvl,nickname,email,phone) values('creator','1004','1','í¬ë¦¬ì—ì´í„°','ì´ë©”ì¼123@naver.com','15888292');
+
 update member set lvl='99' where id='admin';
 
 
@@ -37,11 +45,19 @@ PRIMARY KEY (idx),
 FOREIGN KEY(id) REFERENCES member(id)
 ) DEFAULT CHARSET=utf8;
 
-drop table article;
+
+alter table article add thumbnail varchar(40);
+alter table article modify thumbnail varchar(40) not null;
+alter table article drop tag;
+commit;
+
+desc article
 
 select * from article;
 
-insert into article(id,subject,content,tag) values('admin','Á¦¸ñ','º»¹®','º½º½, ¿©¸§');
+insert into article(id,subject,content,tag) values('admin','ì œëª©','ë³¸ë¬¸','ë´„ë´„, ì—¬ë¦„');
+
+
 
 
 CREATE TABLE reply (
@@ -56,12 +72,9 @@ FOREIGN KEY(id) REFERENCES member(id),
 FOREIGN KEY(idx) REFERENCES article(idx)
 ) DEFAULT CHARSET=utf8;
 
-insert into reply(idx,id,content) values(2,'admin','´ñ±Û');
+insert into reply(idx,id,content) values(2,'admin','ë‹µê¸€');
 
 select * from reply;
-
-insert into article(id,subject,content,tag) values('admin','Á¦¸ñ','º»¹®','º½º½, ¿©¸§');
-
 
 
 CREATE TABLE image (
@@ -75,9 +88,19 @@ PRIMARY KEY (image_idx),
 FOREIGN KEY(idx) REFERENCES article(idx)
 ) DEFAULT CHARSET=utf8;
 
-insert into image(idx,ref,ori_name,file_name,file_size) values(2,1,'¶÷º¸¸£±â´Ï.jpg','039b420de36e4316b7b11a158b2f6739.jpg',59856);
+alter table image add tag varchar(200);
+alter table image add subject varchar(100) not null;
+alter table image add content varchar(1000) not null;
+
+alter table image drop thumbnail;
+
+commit
+
+insert into image(idx,ref,ori_name,file_name,file_size) values(2,1,'ëŒë³´ë¥´ê¸°ë‹ˆ.jpg','039b420de36e4316b7b11a158b2f6739.jpg',59856);
 
 select * from image;
+
+desc image
 
 
 drop table notice;
@@ -92,9 +115,9 @@ FOREIGN KEY(id) REFERENCES member(id),
 FOREIGN KEY(idx) REFERENCES article(idx)
 ) DEFAULT CHARSET=utf8;
 
--- chk ¾Ë¸²»óÅÂ
--- 0 = ¾Ë¸²
--- 1 = ¾ğ±Ş
+-- chk ê°’
+-- 0 = ì•ˆì½ìŒ
+-- 1 = ì½ìŒ
 
 
 insert into notice(id,idx,stat) values('admin','2',1);
@@ -112,10 +135,15 @@ FOREIGN KEY(id) REFERENCES member(id)
 
 select * from creator;
 
-insert into creator(id) values('admin1');
+insert into creator values('creator','www.naver.com','cmemomo','history');
+
+insert into creator(id) values('admin');
+delete from creator where lvl='99'
+
+delete from creator where id='creator'
 
 select m.id, pwd, lvl,nickname,email,phone,address,memo, joindate, homepage, cmemo,history from member as m join creator as c on m.id=c.id;
-
+commit
 
 drop table interest;
 CREATE TABLE interest (
@@ -138,7 +166,7 @@ eimg varchar(40) not null,
 PRIMARY KEY (emblem_no)
 ) DEFAULT CHARSET=utf8;
 
-insert into emblem(emblem,eimg) values('º½º½','bom.jpg');
+insert into emblem(emblem,eimg) values('ë´„ë´„','bom.jpg');
 
 select * from emblem;
 
