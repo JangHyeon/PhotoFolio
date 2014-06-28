@@ -11,7 +11,7 @@
 
 </head>
 <body>
-   <div id="page">
+   <div id="page"> 
       <!-- Header -->
       <jsp:include page="include/header.jsp"/>
 

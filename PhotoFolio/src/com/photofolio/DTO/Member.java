@@ -11,6 +11,9 @@ public class Member {
 		private String profileimg;
 		private String memo;
 		private String homepage;
+		
+		private int like;  //★ 추가함
+		
 		public String getHomepage() {
 			return homepage;
 		}
@@ -87,5 +90,11 @@ public class Member {
 		}
 		public void setMemo(String memo) {
 			this.memo = memo;
+		}
+		public int getLike() {
+			return like;
+		}
+		public void setLike(int like) {
+			this.like = like;
 		}
 }

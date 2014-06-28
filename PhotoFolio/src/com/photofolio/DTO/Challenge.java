@@ -10,7 +10,16 @@ private String content;
 private Date writedate;
 private Date startdate;
 private Date enddate;
-private int activation;//Ã§¸°Áö »óÅÂ Ãâ·Â
+private int activation;
+private String emblem;// â˜…ì¶”ê°€í•¨
+
+
+public String getEmblem() {
+	return emblem;
+}
+public void setEmblem(String emblem) {
+	this.emblem = emblem;
+}
 public int getChall_index() {
 	return chall_index;
 }

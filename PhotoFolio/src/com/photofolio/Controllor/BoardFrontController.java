@@ -32,11 +32,11 @@ public class BoardFrontController extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		
 		//테스트용 세션 설정
-		HttpSession session = request.getSession();
+		//HttpSession session = request.getSession();
 		
-		session.setAttribute("id", "admin");
-		session.setAttribute("nickname", "운영자");
-		session.setAttribute("profileimg", "04545.jpg");
+		//session.setAttribute("id", "admin");
+		//session.setAttribute("nickname", "운영자");
+		//session.setAttribute("profileimg", "04545.jpg");
 		
 		
 		
