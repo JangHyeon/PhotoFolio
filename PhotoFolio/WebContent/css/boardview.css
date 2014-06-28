@@ -483,3 +483,15 @@ line-height: 22px;
 word-wrap: break-word;
 word-break: break-all;
 }
+
+.info em{
+	font-size:8px;
+	font-weight: bold;
+	color: #74ac33;
+}
+
+.rt strong{
+	font-size:10px;
+	font-weight: bold;
+	color: #ffac33;
+}

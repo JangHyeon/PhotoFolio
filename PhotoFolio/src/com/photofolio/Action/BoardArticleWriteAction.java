@@ -14,7 +14,7 @@ import com.photofolio.DAO.BoardDAO;
 import com.photofolio.DTO.Article;
 
 
-public class ArticleWriteAction implements Action {
+public class BoardArticleWriteAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {

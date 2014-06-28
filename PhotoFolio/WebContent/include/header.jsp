@@ -24,10 +24,10 @@
 				</div>
 			<!-- 로그인 전 -->
 			<div class="user_info" id="loginInfoEl">
-				<a href="javascript:member.login();" class="login">로그인 / 회원가입</a>
+				<a href="<%=request.getContextPath()%>/member/login.jsp" class="login">로그인 / 회원가입</a>
 			</div>
 				
-			<a href="../boardorder/upload" class="btn_upload">업로드</a>
+			<a href="<%=request.getContextPath()%>/boardorder/upload" class="btn_upload">업로드</a>
 		</div>
 		<!-- 
 		

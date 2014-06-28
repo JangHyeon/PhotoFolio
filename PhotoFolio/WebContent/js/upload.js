@@ -192,7 +192,6 @@
         	console.log(index);
         	$('#sortable').children('.add_img').eq(index).remove();
         });
-     
         
         
         //글자수 제한

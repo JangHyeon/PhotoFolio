@@ -17,7 +17,7 @@ import com.photofolio.DTO.Member;
 import com.photofolio.DTO.Reply;;
 
 
-public class ArticleViewAction implements Action {
+public class BoardArticleViewAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {

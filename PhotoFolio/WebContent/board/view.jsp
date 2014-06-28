@@ -110,7 +110,7 @@
 								<a id="projectDeleteForm" href="javascript:deleteProject();">삭제</a> 
 								<span id="projectDeleteFormBar" class="bar">|</span>
 								</c:if>
-								<a id="openReportProjectButton" href="javascript:openProjectReport('59410');">신고</a>
+								<a id="openReportProjectButton" href="javascript:openProjectReport('${article.idx}');">신고</a>
 							</p>
 						</div>
 					</div>
@@ -160,15 +160,19 @@
 									</span>
 								</a>
 								<div class="info">
-									<a href="/${reply.nickname}" class="name">${reply.nickname}(${reply.id})</a>
+									<a href="/${reply.id}" class="name">${reply.nickname}(${reply.id})</a>
 									<span class="date"><fmt:formatDate value="${reply.writedate}" pattern="yyyy.MM.dd HH.mm" /></span>
 									<!-- 삭제, 신고 토글 -->
 									<c:if test="${sessionScope.id==reply.id}">
-									<a href="javascript:deleteComment('${reply.reply_idx}');" class="del">삭제</a>
+									<a href="#" class="del">삭제</a>
 									</c:if>
+									
 									<span class="rt">
+									<c:if test="${reply.report!=0}">
+									<Strong>${reply.report}</Strong>
+									</c:if>
 									<c:if test="${sessionScope.id!=reply.id}">
-									<a href="javascript:openCommentReport('${reply.reply_idx}');" class="btn_report">신고</a>
+									<a href="#" class="btn_report">신고</a>
 									</c:if>
 									</span>
 								</div>
@@ -186,7 +190,41 @@
 				</div>
 			</div>
 			
-			<script type="text/javascript">
+						<button id="opener">open the dialog</button>
+ 
+<div id="dialog">
+ <p>I'm a dialog</p>
+ <br>
+ <button id="close_btn">close</button>
+</div>
+			
+		</div>
+			
+			
+<script type="text/javascript">
+//게시물 신고
+var openProjectReport = function(idx){
+	$.post(
+        	"../boardorder/articlereport",
+        	{
+        		idx : idx
+        	},
+        	function(returndata){ 
+        		if(returndata==0){
+        			alert("신고에 실패했습니다\n다시 시도해 주세요");
+        		}else{
+        			$('#commentContent').val("");
+        			$('#commentList').prepend(returndata);
+        		}	         				
+        	}
+        ).fail(function(){
+               alert("서버와 통신 중 문제가 발생했습니다");
+        });
+};
+			
+			
+			
+			
 					//댓글 등록
 					var commentWrite = function(idx, id, nickname, profileimg){
 						$.post(
@@ -202,6 +240,7 @@
 				        		if(returndata==0){
 				        			alert("댓글 등록에 실패했습니다\n다시 시도해 주세요");
 				        		}else{//성공시 댓글 동적 생성
+				        			$('#commentContent').val("");
 				        			$('#commentList').prepend(returndata);
 				        		}	         				
 				        	}
@@ -209,8 +248,62 @@
 				               alert("서버와 통신 중 문제가 발생했습니다");
 				        });
 					};
+					
+			        //댓글 삭제
+			        $('#commentList').on('click','.del',function(e){
+			        	e.preventDefault();
+			        	
+			        	var del = $(this).parent().parent();
+			        	var index = $('li').index(del);
+			        	var reply_idx = del.attr('id').substring(8);
+			        	
+			        	$.post(
+							   	"../boardorder/replydelete",
+							   	{
+							   		reply_idx : reply_idx
+							   	},
+							   	function(returndata){ 
+							 		if(returndata==0){
+							   			alert("댓글 삭제에 실패했습니다\n다시 시도해 주세요");
+							   		}else{
+							        	$('#commentList').children('li').eq(index).remove();
+							   		}	         				
+							   	}
+							).fail(function(){
+							alert("서버와 통신 중 문제가 발생했습니다");
+						});
+			        });
+			     
+			        
+			      //댓글 신고
+			      $('#commentList').on('click','.btn_report',function(e){
+				      	e.preventDefault();
+
+				        var del = $(this).parent().parent().parent();
+				        var index = $('li').index(del);
+				        var reply_idx = del.attr('id').substring(8);
+
+				        $.post(
+						   	"../boardorder/replyreport",
+						   	{
+						   		reply_idx : reply_idx
+						   	},
+						   	function(returndata){ 
+						 		if(returndata==0){
+						   			alert("댓글 신고에 실패했습니다\n다시 시도해 주세요");
+						   		}else{
+						        	var report = $('#commentList').children('li').eq(index).find('strong');
+						        	var reportcount = report.text();
+						        	alert('신고되었습니다.\n취소는 다음 프로젝트에서...');
+						        	report.text(reportcount*1+1);
+						   		}	         				
+						   	}
+						).fail(function(){
+						alert("서버와 통신 중 문제가 발생했습니다");
+						});
+			        });
 			</script>
-		</div>
+
 		<!-- Footer -->
 		<jsp:include page="/include/footer.jsp" />
 
