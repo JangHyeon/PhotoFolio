@@ -8,15 +8,15 @@ import javax.servlet.http.HttpServletResponse;
 import com.photofolio.DAO.CheckDAO;
 
 
-public class checkidAction implements Action{
+public class MemberchecknicknameAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-			String id = request.getParameter("id");
+			String nickname = request.getParameter("nickname");
 			
 			CheckDAO checkdao = new CheckDAO();
 			
-			int data = checkdao.checkid(id);
+			int data = checkdao.checknickname(nickname);
 			
 			PrintWriter out = response.getWriter();
 			System.out.println(data);

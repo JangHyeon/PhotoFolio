@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import com.photofolio.DAO.DeleteDAO;
 
-public class DeleteAction implements Action {
+public class MemberDeleteAction implements Action {
 
 	   @Override
 	   public ActionForward execute(HttpServletRequest request,

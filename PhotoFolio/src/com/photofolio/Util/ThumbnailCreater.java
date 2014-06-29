@@ -247,4 +247,58 @@ public class ThumbnailCreater {
 		}
 	}
 	
+	
+	
+	public static String profilecropAndResize(String fileAbsolutePath) {
+		try {
+			Opener opener = new Opener();
+			ImagePlus imp = opener.openImage(fileAbsolutePath);
+			ImageProcessor ip = imp.getProcessor();
+			StackProcessor sp = new StackProcessor(imp.getStack(), ip);
+
+			int width = imp.getWidth();
+            int height = imp.getHeight();
+            
+            int cropWidth = 0;
+            int cropHeight = 0;
+            
+            if(width > height) {
+                cropWidth = height;
+                cropHeight = height;
+            } else {
+                cropWidth = width;
+                cropHeight = width;
+            }
+            
+            int x = -1;
+            int y = -1;
+            
+            if(width == height) {
+                x = 0;
+                y = 0;
+            } else if(width > height) {
+                x = (width - height) / 2;
+                y=0;
+            } else if (width < height) {
+                x = 0;
+                y = (height - width) / 2;
+            }
+
+            ImageStack croppedStack = sp.crop(x, y, cropWidth, cropHeight);
+            
+            imp.setStack(null, croppedStack);
+
+			sp = new StackProcessor(imp.getStack(), imp.getProcessor());
+
+            ImageStack resizedStack = sp.resize(100, 100, true);
+			imp.setStack(null, resizedStack);
+			StringBuffer filePath = new StringBuffer(fileAbsolutePath);
+			String saveAsFilePath = filePath.toString();
+			IJ.save(imp, saveAsFilePath);
+			return saveAsFilePath;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

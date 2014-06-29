@@ -9,7 +9,7 @@ import com.photofolio.DAO.LikeaddDAO;
 
 
 
-public class LikeaddAction implements Action{
+public class MemberLikeaddAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,
@@ -21,7 +21,7 @@ public class LikeaddAction implements Action{
 	   
 	  
 	   String msg = "관심추가";
-	   String url = "likeinfoprocess?id="+myid;
+	   String url = "likeinfo2process?id="+myid;
 	   request.setAttribute("result", result);
 
 	   request.setAttribute("msg", msg);

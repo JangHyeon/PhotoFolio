@@ -2,6 +2,12 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="javax.sql.*"%>
 <%@ page import="javax.naming.*"%>
+<%
+String id = (String)session.getAttribute("id"); 
+if(id != null && !id.equals("")){
+  response.sendRedirect("../Sample.jsp?id="+id);	
+}
+%>
 <!DOCTYPE html>
 <html>
 <head>

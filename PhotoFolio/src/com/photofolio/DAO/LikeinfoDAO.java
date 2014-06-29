@@ -48,7 +48,7 @@ public class LikeinfoDAO {
 				dto.setNickname(rs.getString("nickname"));
 				dto.setEmail(rs.getString("email"));
 				dto.setMemo(rs.getString("memo"));
-			
+				dto.setProfileimg(rs.getString("profileimg"));
 				memberinfo.add(dto);
 			}
 
@@ -105,7 +105,7 @@ public class LikeinfoDAO {
 				dto.setNickname(rs.getString("nickname"));
 				dto.setEmail(rs.getString("email"));
 				dto.setMemo(rs.getString("memo"));
-				
+				dto.setProfileimg(rs.getString("profileimg"));
 				memberinfo.add(dto);
 			}
 

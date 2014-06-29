@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import com.photofolio.DAO.EditDAO;
 import com.photofolio.DTO.Member;
 
-public class EditAction implements Action{
+public class MemberEditAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,

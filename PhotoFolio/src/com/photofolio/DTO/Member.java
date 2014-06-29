@@ -11,7 +11,13 @@ public class Member {
 		private String profileimg;
 		private String memo;
 		private String homepage;
-		
+		private String checkintreset;
+		public String getCheckintreset() {
+			return checkintreset;
+		}
+		public void setCheckintreset(String checkintreset) {
+			this.checkintreset = checkintreset;
+		}
 		private int like;  //★ 추가함
 		
 		public String getHomepage() {

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import com.photofolio.DAO.JoinDAO;
 import com.photofolio.DTO.Member;
 
-public class JoinAction implements Action {
+public class MemberJoinAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,
@@ -27,7 +27,7 @@ public class JoinAction implements Action {
 		memberdto.setPhone(request.getParameter("phone"));
 		memberdto.setAddress(request.getParameter("address"));
 		memberdto.setProfileimg(request.getParameter("profileimg"));
-		memberdto.setMemo(request.getParameter("setmemo"));
+		memberdto.setMemo(request.getParameter("memo"));
 		result =  joindao.joinmember(memberdto);
 	   
 	    

@@ -1,5 +1,5 @@
 <%@page import="com.photofolio.DTO.Member"%>
-<%@page import="com.photofolio.Action.ModifyAction"%>
+<%@page import="com.photofolio.Action.MemberModifyAction"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -60,7 +60,7 @@ $('#creatormodifybtn').click(function(){
 	      </div>
 	           <div id="profilemodify">
          주소 : <input type="text" name="address"value="<%=dto.getAddress()%>"><br>
-         프로필이미지 : <input type="image" src="WebContent/images/bg_thmb_blank3.gif"><br>
+    <input type="hidden" name="profileimg"value="<%=dto.getProfileimg()%>">
          프로필 : <input type="text" name="memo" value="<%=dto.getMemo()%>"><br>
 	      </div>
 	           <div id="createmodify">
