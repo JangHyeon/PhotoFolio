@@ -52,5 +52,5 @@
                 maxWait="-1"
                 username="photofolio"
                 password="1004"
-                url="jdbc:mysql://192.168.7.70:3306/photofolio"/>
+                url="jdbc:mysql://192.168.12.29:3306/photofolio"/>
 </Context>

@@ -9,7 +9,7 @@ import com.photofolio.DAO.LikeaddDAO;
 
 
 
-public class LikeaddAction implements Action{
+public class MemberLikeaddAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,

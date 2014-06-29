@@ -1,6 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.photofolio.DTO.Member"%>
-<%@page import="com.photofolio.Action.ModifyAction"%>
+<%@page import="com.photofolio.Action.MemberModifyAction"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>

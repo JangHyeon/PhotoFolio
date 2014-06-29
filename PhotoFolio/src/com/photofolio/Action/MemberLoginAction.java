@@ -8,7 +8,7 @@ import com.photofolio.DAO.LoginDAO;
 import com.photofolio.DTO.Member;
 
 
-public class LoginAction implements Action {
+public class MemberLoginAction implements Action {
    
 	@Override
 	public ActionForward execute(HttpServletRequest request,

@@ -15,15 +15,15 @@ import org.apache.catalina.Session;
 
 import com.photofolio.Action.Action;
 import com.photofolio.Action.ActionForward;
-import com.photofolio.Action.DeleteAction;
-import com.photofolio.Action.EditAction;
-import com.photofolio.Action.JoinAction;
-import com.photofolio.Action.LikeaddAction;
-import com.photofolio.Action.LikeyouAction;
-import com.photofolio.Action.LikemeAction;
-import com.photofolio.Action.LoginAction;
-import com.photofolio.Action.ModifyAction;
-import com.photofolio.Action.checkidAction;
+import com.photofolio.Action.MemberDeleteAction;
+import com.photofolio.Action.MemberEditAction;
+import com.photofolio.Action.MemberJoinAction;
+import com.photofolio.Action.MemberLikeaddAction;
+import com.photofolio.Action.MemberLikeyouAction;
+import com.photofolio.Action.MemberLikemeAction;
+import com.photofolio.Action.MemberLoginAction;
+import com.photofolio.Action.MemberModifyAction;
+import com.photofolio.Action.MembercheckidAction;
 import com.photofolio.DAO.ModifyDAO;
 
 /**
@@ -62,7 +62,7 @@ public class MemberFrontController extends HttpServlet {
 		
 		if(command.equals("/memberorder/joinprocess"))
 		{
-			action = new JoinAction();
+			action = new MemberJoinAction();
 			
 			try {
 					forward = action.execute(request, response);
@@ -73,7 +73,7 @@ public class MemberFrontController extends HttpServlet {
 		}else if(command.equals("/memberorder/logonprocess")){
 	         
 	  
-	         action = new LoginAction();
+	         action = new MemberLoginAction();
 	         try {
 	            forward = action.execute(request, response);
 	         } catch (Exception e) {
@@ -90,7 +90,7 @@ public class MemberFrontController extends HttpServlet {
               forward.setRedirect(true);
               forward.setPath("../Sample.jsp");  
 	      }else if(command.equals("/memberorder/modifyprocess")){
-	    	  action = new ModifyAction();
+	    	  action = new MemberModifyAction();
 		         try {
 		            forward = action.execute(request, response);
 		         } catch (Exception e) {
@@ -99,7 +99,7 @@ public class MemberFrontController extends HttpServlet {
 		         }
 	    	  
 	      }else if(command.equals("/memberorder/editprocess")){
-	    	  action = new EditAction();
+	    	  action = new MemberEditAction();
 		         try {
 		            forward = action.execute(request, response);
 		         } catch (Exception e) {
@@ -107,7 +107,7 @@ public class MemberFrontController extends HttpServlet {
 		            e.printStackTrace();
 		         }
 	      }else if(command.equals("/memberorder/deleteprocess")){
-	            action = new DeleteAction();
+	            action = new MemberDeleteAction();
 	            
 	            try {
 	               forward = action.execute(request, response);
@@ -116,7 +116,7 @@ public class MemberFrontController extends HttpServlet {
 	               e.printStackTrace();
 	         }
 	         }else if(command.equals("/memberorder/likeinfoprocess")){
-	        	  action = new LikemeAction();
+	        	  action = new MemberLikemeAction();
 		          
 		            try {
 		               forward = action.execute(request, response);
@@ -125,7 +125,7 @@ public class MemberFrontController extends HttpServlet {
 		               e.printStackTrace();
 	         }
 	         }else if(command.equals("/memberorder/likeinfo2process")){
-	        	  action = new LikeyouAction();
+	        	  action = new MemberLikeyouAction();
 		            
 		            try {
 		               forward = action.execute(request, response);
@@ -134,7 +134,7 @@ public class MemberFrontController extends HttpServlet {
 		               e.printStackTrace();
 	         }
 	         }else if(command.equals("/memberorder/likeadd")){
-	        	  action = new LikeaddAction();
+	        	  action = new MemberLikeaddAction();
 		            
 		            try {
 		               forward = action.execute(request, response);
@@ -144,7 +144,7 @@ public class MemberFrontController extends HttpServlet {
 	         }
 	         }else if(command.equals("/memberorder/idcheckprocess")){
 	        	String id= request.getParameter("id");
-	        	  action = new checkidAction();
+	        	  action = new MembercheckidAction();
 		            
 		            try {
 		               forward = action.execute(request, response);
@@ -153,9 +153,11 @@ public class MemberFrontController extends HttpServlet {
 		               e.printStackTrace();
 	        	 
 	         }
+		            
 	         }else if(command.equals("/memberorder/checknicknameprocess")){
+	        	 //닉네임 중복처리
 	        		String id= request.getParameter("nickname");
-		        	  action = new checkidAction();
+		        	  action = new MembercheckidAction();
 			            
 			            try {
 			               forward = action.execute(request, response);

@@ -10,26 +10,33 @@ import com.photofolio.DAO.LikeinfoDAO;
 import com.photofolio.DAO.ModifyDAO;
 import com.photofolio.DTO.Member;
 
-public class LikemeAction implements Action{
-	@Override
+public class MemberLikeyouAction implements Action {
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
-
-		ModifyDAO modifydao = new ModifyDAO();
-		LikeinfoDAO likeinfodao = new LikeinfoDAO();
 		
+		LikeinfoDAO likeinfodao = new LikeinfoDAO();
+		ModifyDAO modifydao = new ModifyDAO();
+	
 		String id = request.getParameter("id");
 		 ArrayList<Member> list = new ArrayList<Member>();
 		 ArrayList<Member> info = new ArrayList<Member>();
-	   list = likeinfodao.info(id);
+		 ArrayList<Member> infocheck = new ArrayList<Member>();
+		 
+				 
+		 
+		 info = modifydao.modifymember(id);
+	   list = likeinfodao.info2(id);
+
 	   info = modifydao.modifymember(id);
 		 request.setAttribute("list",list);
 		 request.setAttribute("info",info);
-	     request.setAttribute("check", "checkno");
+		 request.setAttribute("check", "checkok");
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
 		forward.setPath("../member/likeinfo.jsp");
+		
+		
 		return forward;
 		
 	}

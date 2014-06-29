@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>SamplePage</title>
-<link type="text/css" rel="stylesheet" href="../css/common.css">
+<link type="text/css" rel="stylesheet" href="../css/join.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 
 <script type="text/javascript">
@@ -77,25 +77,27 @@ $(function(){
       <jsp:include page="../include/header.jsp"/>
       <div id="main">
       
-      
+      <div class="joinform">
       <form action="../memberorder/joinprocess" id="joinform" method="post">
-         아이디: <input type="text" id="id" name="id"><input id ="checkid"type="text" hidden="hideen"><button id="idcheck" type="button">중복체크</button><br>
+      <h3>회원가입</h3>
+      <br>
+         아이디: <input type="text" id="id" name="id"><input id ="checkid"type="text" hidden="hideen">&nbsp;&nbsp;&nbsp;&nbsp;<button id="idcheck" class="loginbtn" type="button">중복체크</button><br>
          비밀번호 : <input type="password" name="pwd"><br>
-         닉네임 : <input type="text" name="nickname"><input id ="checknickname"type="text" hidden="hideen"><button id="nicknamecheck" type="button">중복체크</button><br>
+         닉네임 : <input type="text" name="nickname"><input id ="checknickname"type="text" hidden="hideen">&nbsp;&nbsp;&nbsp;&nbsp;<button id="nicknamecheck" class="loginbtn" type="button">중복체크</button><br>
          휴대폰번호 : <input type="text" name="phone"><br>
          이메일 : <input type="text" name="email"><br>
 
          주소 : <input type="text" name="address"><br>
-         프로필이미지 <br> 
-         <input type="image" src="WebContent/images/bg_thmb_blank3.gif"><input type="button" value="이미지 업로드" name="imgbtn"><br>
+         <br>프로필이미지 <br> 
+         <input type="image" src="WebContent/images/bg_thmb_blank3.gif">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="이미지 업로드" class="loginbtn" name="imgbtn"><br>
                프로필 <br>
 <textarea rows="10" cols="30"name="profile" style="resize:none; overflow-y:scroll;"></textarea><br>
          
          </form>
          
-         <a id="join">회원가입</a>&nbsp;&nbsp;
+        <br> <a id="join" class="loginbtn"><span>회원가입</span></a>&nbsp;&nbsp;
 
-  
+  </div>
       </div>
       
       
