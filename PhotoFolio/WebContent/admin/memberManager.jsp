@@ -15,7 +15,7 @@
  	text-align: center;
  }
 </style>
-<link type="text/css" rel="stylesheet" href="../css/coFmmon.css">
+<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/css/common.css">
 </head>
 <body>
 	<div id="page">
