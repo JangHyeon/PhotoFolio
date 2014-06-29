@@ -27,7 +27,7 @@ public class MemberJoinAction implements Action {
 		memberdto.setPhone(request.getParameter("phone"));
 		memberdto.setAddress(request.getParameter("address"));
 		memberdto.setProfileimg(request.getParameter("profileimg"));
-		memberdto.setMemo(request.getParameter("memo"));
+		memberdto.setMemo(request.getParameter("setmemo"));
 		result =  joindao.joinmember(memberdto);
 	   
 	    

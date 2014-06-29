@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.photofolio.Util.ThumbnailCreater;
 
-public class ThumbnailCropperAction implements Action {
+public class BoardThumbnailCropperAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {

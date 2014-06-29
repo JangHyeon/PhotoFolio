@@ -49,11 +49,6 @@ public class MemberLikeyouAction implements Action {
 		   
 	   }
 	   
-	   
-	   
-	   
-	   
-	   
 	      request.setAttribute("list",list);
 	      
 	      

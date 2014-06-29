@@ -69,7 +69,7 @@ public class AdminDao {
 		return result;
 	}
 
-	public List memberManagerMain() { // 2. memberManager List 불러오기
+	public List memberManagerMain() { // 2.1 memberManager List 불러오기
 
 		List<Member> list = new ArrayList<Member>();
 		try {
@@ -85,6 +85,42 @@ public class AdminDao {
 				// rs.getString(2));
 			}
 			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			ConnectionHelper.close(rs);
+			ConnectionHelper.close(pstmt);
+			ConnectionHelper.close(conn);
+		}
+		return null;
+	}
+
+	public List memberView(String id) { // 2.2 memberManager List 불러오기
+
+		List<Member> memberList = new ArrayList<Member>();
+		try {
+			pstmt = conn
+					.prepareStatement("select id,pwd,lvl,nickname,email,phone,address,profileimg,memo from member where id=?");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			System.out.println("select query success");
+			while (rs.next()) {
+				Member member = new Member();
+				member.setId(rs.getString(1));
+				member.setPwd(rs.getString(2));
+				member.setLevel(rs.getInt(3));
+				member.setNickname(rs.getString(4));
+				member.setEmail(rs.getString(5));
+				member.setPhone(rs.getString(6));
+				member.setAddress(rs.getString(7));
+				member.setProfileimg(rs.getString(8));
+				member.setMemo(rs.getString(9));
+
+				memberList.add(member);
+
+			}
+			return memberList;
 		} catch (Exception e) {
 			e.printStackTrace();
 
@@ -290,7 +326,8 @@ public class AdminDao {
 
 		try {
 
-			pstmt = conn.prepareStatement("select subject,emblem_no from challenge");
+			pstmt = conn
+					.prepareStatement("select subject,emblem_no from challenge");
 			rs = pstmt.executeQuery();
 			System.out.println("select query success");
 			while (rs.next()) {
@@ -326,7 +363,7 @@ public class AdminDao {
 			System.out.println("insert query success1");
 
 			// 생성된 앰블럼의 emblem_no와 동일한 챌린지 생성
-			//★챌린지가 등록되면 activation 이 1(오픈)으로 등록된다
+			// ★챌린지가 등록되면 activation 이 1(오픈)으로 등록된다
 			pstmt = conn
 					.prepareStatement("insert into challenge(emblem_no,subject,content,startdate,enddate,activation) values((select emblem_no from emblem where emblem=?),?,?,?,?,1)");
 			pstmt.setString(1, subject);
@@ -361,8 +398,12 @@ public class AdminDao {
 
 		List<Challenge> challengeView = new ArrayList<Challenge>();
 		try {
-			//select c.emblem_no,c.subject,c.content,c.startdate,c.enddate,c.writedate,c.activation, e.emblem from challenge c join emblem e on c.emblem_no=e.emblem_no where c.subject=?
-			pstmt = conn.prepareStatement("select c.emblem_no,c.subject,c.content,c.startdate,c.enddate,c.writedate,c.activation, e.emblem from challenge c join emblem e on c.emblem_no=e.emblem_no where c.emblem_no=?");
+			// select
+			// c.emblem_no,c.subject,c.content,c.startdate,c.enddate,c.writedate,c.activation,
+			// e.emblem from challenge c join emblem e on
+			// c.emblem_no=e.emblem_no where c.subject=?
+			pstmt = conn
+					.prepareStatement("select c.emblem_no,c.subject,c.content,c.startdate,c.enddate,c.writedate,c.activation, e.emblem from challenge c join emblem e on c.emblem_no=e.emblem_no where c.emblem_no=?");
 			pstmt.setInt(1, emblem_no);
 			rs = pstmt.executeQuery();
 			System.out.println("select query success");
@@ -377,7 +418,7 @@ public class AdminDao {
 				challenge.setWritedate(rs.getDate(6));
 				challenge.setActivation(rs.getInt(7));
 				challenge.setEmblem(rs.getString(8));
-				
+
 				challengeView.add(challenge);
 			}
 			return challengeView;
@@ -393,12 +434,14 @@ public class AdminDao {
 		return null;
 	}
 
-public int challengeModifyOk(String subject, String content, String startdate,
-		String enddate, int emblem_no,String emblem) { // 5.3 challenge 수정
+	public int challengeModifyOk(String subject, String content,
+			String startdate, String enddate, int emblem_no, String emblem) { // 5.3
+																				// challenge
+																				// 수정
 		try {
 			// 먼저 앰블럼 수정
 			pstmt = conn
-					.prepareStatement("update emblem set emblem = ?,eimg=0 where emblem_no=?"); 
+					.prepareStatement("update emblem set emblem = ?,eimg=0 where emblem_no=?");
 			// 사진은일단 보류★
 			pstmt.setString(1, emblem);
 			pstmt.setInt(2, emblem_no);
@@ -413,7 +456,6 @@ public int challengeModifyOk(String subject, String content, String startdate,
 			pstmt.setString(3, startdate);
 			pstmt.setString(4, enddate);
 			pstmt.setInt(5, emblem_no);
-			
 
 			row = pstmt.executeUpdate();
 			System.out.println("update query success2");
@@ -437,114 +479,111 @@ public int challengeModifyOk(String subject, String content, String startdate,
 		return -1;
 	}
 
-
-public int challengeDelete(int emblem_no) { // 5.4 challenge 삭제하기
-	try {
-		/*int num = 0;
-		pstmt = conn
-				.prepareStatement("select emblem_no from challenge where getEmblem_no=?");
-		pstmt.setString(1, emblem_no);
-		rs = pstmt.executeQuery();
-		System.out.println("select query success");
-		if (rs.next()) {
-			num= rs.getInt(1); // 번호 넘겨준다
-		}*/
-		
-		pstmt = conn
-				.prepareStatement("delete from challenge where emblem_no=?");
-		pstmt.setInt(1, emblem_no);
-		int row = pstmt.executeUpdate();
-		System.out.println("delete query success1");
-
-/*		pstmt = conn
-				.prepareStatement("delete from emblem where emblem_no=" + num);
-		row = pstmt.executeUpdate();
-		System.out.println("delete query success2");*/
-
-		if (row > 0) {
-			System.out.println("챌린지 삭제완료");
-		} else {
-
-			System.out.println("챌린지 삭제미완료ㅠ");
-		}
-		return 1;
-
-	} catch (Exception e) {
-		e.printStackTrace();
-
-	} finally {
-		// ConnectionHelper.close(rs);
-		ConnectionHelper.close(pstmt);
-		ConnectionHelper.close(conn);
-	}
-	return -1;
-}
-
-
-
-public List emblemManagerMain() { // 6.1 emblem List 불러오기
-
-	List<Emblem> emblemList = new ArrayList<Emblem>();
-	try {
-		pstmt = conn.prepareStatement("select emblem_no,emblem,eimg from emblem");
-		rs = pstmt.executeQuery();
-		System.out.println("select query success");
-		while (rs.next()) {
-			Emblem emblem = new Emblem();
-			emblem.setEmblem_no(rs.getInt(1));
-			emblem.setEmblem(rs.getString(2));
-			emblem.setEimg(rs.getString(3));
-			emblemList.add(emblem);
-		
-		}
-		return emblemList;
-	} catch (Exception e) {
-		e.printStackTrace();
-
-	} finally {
-		ConnectionHelper.close(rs);
-		ConnectionHelper.close(pstmt);
-		ConnectionHelper.close(conn);
-	}
-	return null;
-}
-
-
-
-public List emblemModifyView(int emblem_no) { // 6.2 emblem 수정뷰 불러오기
-
-	List<Emblem> emblemList = new ArrayList<Emblem>();
-	try {
-		pstmt = conn.prepareStatement("select emblem_no,emblem,eimg from emblem where emblem_no=?");
-		pstmt.setInt(1, emblem_no);
-		rs = pstmt.executeQuery();
-		System.out.println("select query success");
-		while (rs.next()) {
-			Emblem emblem = new Emblem();
-			emblem.setEmblem_no(rs.getInt(1));
-			emblem.setEmblem(rs.getString(2));
-			emblem.setEimg(rs.getString(3));
-			emblemList.add(emblem);
-		
-		}
-		return emblemList;
-	} catch (Exception e) {
-		e.printStackTrace();
-
-	} finally {
-		ConnectionHelper.close(rs);
-		ConnectionHelper.close(pstmt);
-		ConnectionHelper.close(conn);
-	}
-	return null;
-}
-
-
-public int emblemModifyOk(int emblem_no, String emblem, String eimg) { // 6.3 emblem수정
+	public int challengeDelete(int emblem_no) { // 5.4 challenge 삭제하기
 		try {
-			//  앰블럼 수정
+			/*
+			 * int num = 0; pstmt = conn .prepareStatement(
+			 * "select emblem_no from challenge where getEmblem_no=?");
+			 * pstmt.setString(1, emblem_no); rs = pstmt.executeQuery();
+			 * System.out.println("select query success"); if (rs.next()) { num=
+			 * rs.getInt(1); // 번호 넘겨준다 }
+			 */
+
 			pstmt = conn
-					.prepareStatement("update emblem set emblem = ?,eimg=0 where emblem_no=?"); 
+					.prepareStatement("delete from challenge where emblem_no=?");
+			pstmt.setInt(1, emblem_no);
+			int row = pstmt.executeUpdate();
+			System.out.println("delete query success1");
+
+			/*
+			 * pstmt = conn
+			 * .prepareStatement("delete from emblem where emblem_no=" + num);
+			 * row = pstmt.executeUpdate();
+			 * System.out.println("delete query success2");
+			 */
+
+			if (row > 0) {
+				System.out.println("챌린지 삭제완료");
+			} else {
+
+				System.out.println("챌린지 삭제미완료ㅠ");
+			}
+			return 1;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			// ConnectionHelper.close(rs);
+			ConnectionHelper.close(pstmt);
+			ConnectionHelper.close(conn);
+		}
+		return -1;
+	}
+
+	public List emblemManagerMain() { // 6.1 emblem List 불러오기
+
+		List<Emblem> emblemList = new ArrayList<Emblem>();
+		try {
+			pstmt = conn
+					.prepareStatement("select emblem_no,emblem,eimg from emblem");
+			rs = pstmt.executeQuery();
+			System.out.println("select query success");
+			while (rs.next()) {
+				Emblem emblem = new Emblem();
+				emblem.setEmblem_no(rs.getInt(1));
+				emblem.setEmblem(rs.getString(2));
+				emblem.setEimg(rs.getString(3));
+				emblemList.add(emblem);
+
+			}
+			return emblemList;
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			ConnectionHelper.close(rs);
+			ConnectionHelper.close(pstmt);
+			ConnectionHelper.close(conn);
+		}
+		return null;
+	}
+
+	public List emblemModifyView(int emblem_no) { // 6.2 emblem 수정뷰 불러오기
+
+		List<Emblem> emblemList = new ArrayList<Emblem>();
+		try {
+			pstmt = conn
+					.prepareStatement("select emblem_no,emblem,eimg from emblem where emblem_no=?");
+			pstmt.setInt(1, emblem_no);
+			rs = pstmt.executeQuery();
+			System.out.println("select query success");
+			while (rs.next()) {
+				Emblem emblem = new Emblem();
+				emblem.setEmblem_no(rs.getInt(1));
+				emblem.setEmblem(rs.getString(2));
+				emblem.setEimg(rs.getString(3));
+				emblemList.add(emblem);
+
+			}
+			return emblemList;
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			ConnectionHelper.close(rs);
+			ConnectionHelper.close(pstmt);
+			ConnectionHelper.close(conn);
+		}
+		return null;
+	}
+
+	public int emblemModifyOk(int emblem_no, String emblem, String eimg) { // 6.3
+																			// emblem수정
+		try {
+			// 앰블럼 수정
+			pstmt = conn
+					.prepareStatement("update emblem set emblem = ?,eimg=0 where emblem_no=?");
 			// 사진은일단 보류★
 			pstmt.setString(1, emblem);
 			pstmt.setInt(2, emblem_no);
@@ -570,32 +609,32 @@ public int emblemModifyOk(int emblem_no, String emblem, String eimg) { // 6.3 em
 		return -1;
 	}
 
-public int emblemDelete(int emblem_no) { // 6.4 앰블럼 삭제하기
-	try {
+	public int emblemDelete(int emblem_no) { // 6.4 앰블럼 삭제하기
+		try {
 
-		pstmt = conn
-				.prepareStatement("delete from emblem where emblem_no=?");
-		pstmt.setInt(1, emblem_no);
-		int row = pstmt.executeUpdate();
-		System.out.println("emblem delete query success");
+			pstmt = conn
+					.prepareStatement("delete from emblem where emblem_no=?");
+			pstmt.setInt(1, emblem_no);
+			int row = pstmt.executeUpdate();
+			System.out.println("emblem delete query success");
 
-		if (row > 0) {
-			System.out.println("앰블럼 삭제완료");
-		} else {
+			if (row > 0) {
+				System.out.println("앰블럼 삭제완료");
+			} else {
 
-			System.out.println("앰블럼 삭제미완료ㅠ");
+				System.out.println("앰블럼 삭제미완료ㅠ");
+			}
+			return 1;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			// ConnectionHelper.close(rs);
+			ConnectionHelper.close(pstmt);
+			ConnectionHelper.close(conn);
 		}
-		return 1;
-
-	} catch (Exception e) {
-		e.printStackTrace();
-
-	} finally {
-		// ConnectionHelper.close(rs);
-		ConnectionHelper.close(pstmt);
-		ConnectionHelper.close(conn);
+		return -1;
 	}
-	return -1;
-}
 
 }

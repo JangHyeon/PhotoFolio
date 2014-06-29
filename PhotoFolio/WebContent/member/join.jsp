@@ -21,6 +21,7 @@
 
 <link href="<%=path%>/css/boarduploader.css" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="../css/common.css">
+<link type="text/css" rel="stylesheet" href="../css/join.css">
 <script type="text/javascript">
 $(function(){
 	$('#idcheck').click(function(){
@@ -175,7 +176,7 @@ $(function(){
          
          </form>
          
-         <a id="join">회원가입</a>&nbsp;&nbsp;
+         <br> <a id="join" class="loginbtn"><span>회원가입</span></a>&nbsp;&nbsp;
 
   
       </div>

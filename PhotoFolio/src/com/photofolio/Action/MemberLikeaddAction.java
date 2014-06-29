@@ -20,7 +20,7 @@ public class MemberLikeaddAction implements Action{
 	   int result=  likeadd.likeadd(id, myid);
 	   
 	  
-	   String msg = "관심추가";
+	   String msg = "관심추가"; 
 	   String url = "likeinfo2process?id="+myid;
 	   request.setAttribute("result", result);
 

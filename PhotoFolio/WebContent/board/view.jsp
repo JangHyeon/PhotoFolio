@@ -13,12 +13,10 @@
 <title>타이틀 :: PhotoFolio</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <!-- Latest compiled and minified JavaScript -->
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
 <link type="text/css" rel="stylesheet" href="<%=path%>/css/common.css">
 <link type="text/css" rel="stylesheet" href="<%=path%>/css/boardview.css">
 </head>
@@ -107,10 +105,13 @@
 								<c:if test="${sessionScope.id==article.id}">
 								<a id="projectModifyForm" href="/uploader/modifyForm.grfl?projectNo=24386&amp;ctstNo=0">수정</a> 
 								<span id="projectModifyFormBar" class="bar">|</span>
-								<a id="projectDeleteForm" href="javascript:deleteProject();">삭제</a> 
+								<a id="projectDeleteForm" href="#">삭제</a> 
 								<span id="projectDeleteFormBar" class="bar">|</span>
 								</c:if>
-								<a id="openReportProjectButton" href="javascript:openProjectReport('59410');">신고</a>
+								<a id="openReportProjectButton" href="#">신고</a>
+								<c:if test="${article.report>0}">
+								<p id="articlereport"><em>${article.report}</em>건의 신고가 있습니다</p>
+								</c:if>
 							</p>
 						</div>
 					</div>
@@ -119,7 +120,7 @@
 					<div class="btn_area">
 						<div class="btn_inn">
 							<div class="like_uio">
-								<a id="likeButton" href="javascript:alertDontLikeMyProject();" class="btn_circle like _like_link">
+								<a id="likeButton" href="#" class="btn_circle like _like_link">
 								<span class="ic"><span>
 								</span></span>좋아요<em id="likeCount">${article.like}</em></a>
 								<span id="likeSpan" class="btn_circle like _like" style="display: none;"></span>
@@ -134,7 +135,6 @@
 					</div>
 					<!-- 좋아요끝 -->
 					<!-- 댓글 -->
-					
 					<div class="comment" id="commentInfo">
 						<div class="comment_inp">
 							<form action="#" method="post">
@@ -142,9 +142,14 @@
 									<legend>댓글달기</legend>
 										<label for="commentContent" id="comment_write" class="blind">댓글달기</label>
 										<div class="cmt_wrap">
+											<span id="comment_tit">0/1000자</span>
 											<textarea id="commentContent" cols="80" rows="20" style="resize: none;"></textarea>
 										</div>
-										<a id="registCommentButton" href="javascript:commentWrite(${article.idx}, '${sessionScope.id}', '${sessionScope.nickname}', '${sessionScope.profileimg}');" class="btn_ty2">댓글달기</a>
+										<a id="registCommentButton" href="#" class="btn_ty2">댓글달기</a>
+										<input type="hidden" id="idx" value="${article.idx}">
+										<input type="hidden" id="id" value="${sessionScope.id}">
+										<input type="hidden" id="nickname" value="${sessionScope.nickname}">
+										<input type="hidden" id="profileimg" value="${sessionScope.profileimg}">
 								</fieldset>
 							</form>
 							<p class="dsc">댓글은 1,000자까지 작성할 수 있으며 주제와 무관한 댓글, 악플은 삭제될 수 있습니다. <a href="/댓글 운영정책링크" target="_blank">댓글 운영원칙 보기</a></p>
@@ -160,15 +165,20 @@
 									</span>
 								</a>
 								<div class="info">
-									<a href="/${reply.nickname}" class="name">${reply.nickname}(${reply.id})</a>
+									<a href="/${reply.id}" class="name">${reply.nickname}(${reply.id})</a>
 									<span class="date"><fmt:formatDate value="${reply.writedate}" pattern="yyyy.MM.dd HH.mm" /></span>
 									<!-- 삭제, 신고 토글 -->
 									<c:if test="${sessionScope.id==reply.id}">
-									<a href="javascript:deleteComment('${reply.reply_idx}');" class="del">삭제</a>
+									<a href="#" class="del">삭제</a>
 									</c:if>
+									
 									<span class="rt">
+									
 									<c:if test="${sessionScope.id!=reply.id}">
-									<a href="javascript:openCommentReport('${reply.reply_idx}');" class="btn_report">신고</a>
+									<a href="#" class="btn_report">신고</a>
+									</c:if>
+									<c:if test="${reply.report!=0}">
+									<Strong>${reply.report}</Strong>
 									</c:if>
 									</span>
 								</div>
@@ -185,35 +195,10 @@
 					<!-- 댓글끝 -->	
 				</div>
 			</div>
-			
-			<script type="text/javascript">
-					//댓글 등록
-					var commentWrite = function(idx, id, nickname, profileimg){
-						$.post(
-				        	"../boardorder/replywrite",
-				        	{
-				        		idx : idx,
-				        		id : id,
-				        		nickname : nickname,
-				        		content : $('#commentContent').val(),
-				        		profileimg : profileimg
-				        	},
-				        	function(returndata){ 
-				        		if(returndata==0){
-				        			alert("댓글 등록에 실패했습니다\n다시 시도해 주세요");
-				        		}else{//성공시 댓글 동적 생성
-				        			$('#commentList').prepend(returndata);
-				        		}	         				
-				        	}
-				        ).fail(function(){
-				               alert("서버와 통신 중 문제가 발생했습니다");
-				        });
-					};
-			</script>
 		</div>
+		<script src="<%=path%>/js/view.js"></script>
 		<!-- Footer -->
 		<jsp:include page="/include/footer.jsp" />
-
 	</div>
 </body>
 </html>

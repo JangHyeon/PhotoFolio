@@ -30,7 +30,7 @@ public class MemberLikemeAction implements Action{
 	     request.setAttribute("check", "checkno");
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("../member/likeinfo.jsp");
+		forward.setPath("../member/likeinfo.jsp"); 
 		return forward;
 		
 	}
