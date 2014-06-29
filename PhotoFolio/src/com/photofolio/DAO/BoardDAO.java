@@ -300,8 +300,8 @@ public class BoardDAO {
 		return reply_idx;
 	}
 	
-	//댓글쓰기
-		public int replyDelete(int reply_idx){
+	//댓글삭제
+	public int replyDelete(int reply_idx){
 		int result = 0;
 			try {
 			conn = ds.getConnection();
@@ -326,7 +326,7 @@ public class BoardDAO {
 		try {
 			conn = ds.getConnection();
 			
-				//조회수 갱신
+			//신고수 갱신
 			pstmt = conn.prepareStatement("update reply set report=report+1 where reply_idx=?");
 			pstmt.setInt(1, reply_idx);
 			result = pstmt.executeUpdate();
@@ -340,4 +340,47 @@ public class BoardDAO {
 		}
 		return result;
 	}
+	
+	//댓글 신고 +1
+	public int articleReport(int idx){
+		int result =0;
+		try {
+			conn = ds.getConnection();
+			
+			//신고수 갱신
+			pstmt = conn.prepareStatement("update article set report=report+1 where idx=?");
+			pstmt.setInt(1, idx);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}finally{
+				ConnectionHelper.close(rs);
+			ConnectionHelper.close(pstmt);
+			ConnectionHelper.close(conn);
+		}
+		return result;
+	}
+	
+	//게시물삭제
+	public int articleDelete(int idx){
+		int result = 0;
+			try {
+			conn = ds.getConnection();
+			String sql = "delete from article where idx=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+		
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}finally{
+			ConnectionHelper.close(rs);
+			ConnectionHelper.close(pstmt);
+			ConnectionHelper.close(conn);
+		}
+		return result;
+	}
 }
+
+

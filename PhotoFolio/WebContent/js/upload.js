@@ -1,69 +1,68 @@
-	$(function(){
-		///Image Cropper
-		var $image = $(".img-container img"),
-		$dataX1 = $("#data-x1"),
-        $dataY1 = $("#data-y1"),
-        $dataHeight = $("#data-height"),
-        $dataWidth = $("#data-width");
+$(function(){
+	///Image Cropper
+	var $image = $(".img-container img"),
+	$dataX1 = $("#data-x1"),
+    $dataY1 = $("#data-y1"),
+    $dataHeight = $("#data-height"),
+    $dataWidth = $("#data-width");
 		
-        $image.cropper({
-		    aspectRatio: 4/3,		//화면 비율 
-		    preview: "#img-preview",//미리보기할 객체 선택자
-		    modal: true ,			//배경 어둡게 설정
-            done: function(data) {  //이동시 작동되는 메서드
-                $dataX1.val(data.x1);
-                $dataY1.val(data.y1);
-                $dataHeight.val(data.height);
-                $dataWidth.val(data.width);
-            }
-		}).on({
-            dragstart: function() {
-            },
-            dragmove: function() {
-             	var data = $image.cropper("getData");
-            	if(data.width<592){
-            		$image.cropper("setData",{width:592, height:444,x1:data.x1, y1:data.y1, x2:data.x2, y2:data.y2});
-            	}
-            },
-            dragend: function() {
-            	var data = $image.cropper("getData");
-            	if(data.width<592){
-            		$image.cropper("setData",{width:592, height:444,x1:data.x1, y1:data.y1, x2:data.x2, y2:data.y2});
-            	}
-            },
-            dclick: function(){
-            	$.post(//크롭 처리
-            		'../boardorder/thumnbnailcropper', {
-            			x:$('#data-x1').val(),
-            			y:$('#data-y1').val(),
-            			width:$('#data-width').val(),
-            			height:$('#data-height').val(),
-            			filename:$('#thumbnail').val()     			
-            		} ,
-        			function(data){
-            			console.log(data);
-            			if(data=="cropAndResize_success"){
-            				$('crop-result').val(data);
-            			}else if(data=="Dimensions do not match"){
-            				alert("크롭이미지를 생성할 수 없습니다.\n크롭영역을 조정하시고 다시 시도해주세요.");
-            				$('#img-preview').empty();
-            			}else if(data=="Unsupported format or not found"){
-            				alert("파일을 찾을 수 없거나 지원하는 포맷이 아닙니다.\n다시 시도해주세요.");
-            				$('#img-preview').empty();
-            			}
-            		}
-        		);
-            	
-            	$image.cropper('disable');
-            	$image.parent().css("display","none");
-            }
-        });
+    $image.cropper({
+    	aspectRatio: 4/3,		//화면 비율 
+	    preview: "#img-preview",//미리보기할 객체 선택자
+	    modal: true ,			//배경 어둡게 설정
+        done: function(data) {  //이동시 작동되는 메서드
+           $dataX1.val(data.x1);
+           $dataY1.val(data.y1);
+           $dataHeight.val(data.height);
+           $dataWidth.val(data.width);
+        }
+	}).on({
+        dragstart: function() {
+        },
+        dragmove: function() {
+        	var data = $image.cropper("getData");
+          	if(data.width<592){
+      		$image.cropper("setData",{width:592, height:444,x1:data.x1, y1:data.y1, x2:data.x2, y2:data.y2});
+       	}
+    },
+    dragend: function() {
+      	var data = $image.cropper("getData");
+      	if(data.width<592){
+   		$image.cropper("setData",{width:592, height:444,x1:data.x1, y1:data.y1, x2:data.x2, y2:data.y2});
+   	}
+    },
+    dclick: function(){
+      	$.post(//크롭 처리
+    		'../boardorder/thumnbnailcropper', {
+   			x:$('#data-x1').val(),
+   			y:$('#data-y1').val(),
+   			width:$('#data-width').val(),
+   			height:$('#data-height').val(),
+  			filename:$('#thumbnail').val()     			
+   		},
+   		function(data){
+   			console.log(data);
+   			if(data=="cropAndResize_success"){
+   				$('crop-result').val(data);
+   			}else if(data=="Dimensions do not match"){
+   				alert("크롭이미지를 생성할 수 없습니다.\n크롭영역을 조정하시고 다시 시도해주세요.");
+   				$('#img-preview').empty();
+   			}else if(data=="Unsupported format or not found"){
+   				alert("파일을 찾을 수 없거나 지원하는 포맷이 아닙니다.\n다시 시도해주세요.");
+   				$('#img-preview').empty();
+   			}
+   		}
+	);            	
+    $image.cropper('disable');
+	$image.parent().css("display","none");
+	}
+});
 				
 		
-        //thumsnail_upload
-        $('#thumsnail_upFile').fileupload({
-            url : '../boardorder/thumbnailupload', 
-            dataType: 'json',
+//thumsnail_upload
+$('#thumsnail_upFile').fileupload({
+	url : '../boardorder/thumbnailupload', 
+	dataType: 'json',
             //replaceFileInput: false,
             dropZone:$(''),
             
@@ -299,6 +298,6 @@
 		        	});
 					//alert('전송후');
 				}
-    		);
+   		);
         });      
-	});
+});
