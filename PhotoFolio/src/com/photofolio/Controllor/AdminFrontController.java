@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.photofolio.Action.Action;
 import com.photofolio.Action.ActionForward;
@@ -19,6 +20,7 @@ import com.photofolio.Action.AdminCallengeViewAction;
 import com.photofolio.Action.AdminChallengeDeleteAction;
 import com.photofolio.Action.AdminChallengeWriteAction;
 import com.photofolio.Action.AdminCreatorLevelDownAction;
+import com.photofolio.Action.AdminDashboardViewAction;
 import com.photofolio.Action.AdminEmblemDeleteAction;
 import com.photofolio.Action.AdminEmblemListAction;
 import com.photofolio.Action.AdminEmblemModifyAction;
@@ -28,6 +30,7 @@ import com.photofolio.Action.AdminMemberDeleteAction;
 import com.photofolio.Action.AdminMemberLevelManagerAction;
 import com.photofolio.Action.AdminMemberLevelUpAction;
 import com.photofolio.Action.AdminMemberManagerAction;
+import com.photofolio.Action.AdminMemberViewAction;
 
 
 @WebServlet("/adminorder/*")
@@ -56,7 +59,7 @@ public class AdminFrontController extends HttpServlet {
 		
 		//////////////////////////////////////////////////////////////
 		
-		if(command.equals("/adminorder/login")) //1. 관리자 로그인처리
+		if(command.equals("/adminorder/login")) //1.1 관리자 로그인처리
 		{
 			System.out.println("adminlogin display");
 			String id = request.getParameter("id");
@@ -70,10 +73,31 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-			//////////////////////////////////////////////////////////
-			
-		}else if(command.equals("/adminorder/memberManager")){ //2.1 회원관리 페이지
+		}
+		else if(command.equals("/adminorder/adminLogout")){
+			System.out.println("adminlogout display");
+			  HttpSession session = request.getSession();
+	    	  session.invalidate();
+	    	  
+	    	  forward = new ActionForward();
+              forward.setRedirect(true);
+              forward.setPath("../admin/LoginAdmin.jsp");  
+		}
+		//////////////////////////////////////////////////////////
+		
+		else if(command.equals("/adminorder/dashboard")){  //★
+			System.out.println("Dashboard Manage display");
+			action = new AdminDashboardViewAction();
+			try {
+				forward = action.execute(request, response);
+				System.out.println("Dashboard Manage After");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		///////////////////////////////////////////////////
+		else if(command.equals("/adminorder/memberManager")){ //2.1 회원관리 페이지
 			System.out.println("MemberManager Admin Display");
 			
 			action = new AdminMemberManagerAction();
@@ -84,7 +108,19 @@ public class AdminFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/adminorder/memberDelete")){ //2.2 회원 삭제
+		}
+		else if(command.equals("/adminorder/memberView")){
+			System.out.println("memberView Admin Display");
+			action = new AdminMemberViewAction();
+			try {
+				forward = action.execute(request, response);
+				System.out.println("memberView After");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/adminorder/memberDelete")){ //2.2 회원 삭제
 			System.out.println("memberDelete Admin Display");
 			action = new AdminMemberDeleteAction();
 			try {
