@@ -135,7 +135,6 @@
 					</div>
 					<!-- 좋아요끝 -->
 					<!-- 댓글 -->
-					
 					<div class="comment" id="commentInfo">
 						<div class="comment_inp">
 							<form action="#" method="post">
