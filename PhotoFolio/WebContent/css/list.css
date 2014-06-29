@@ -29,12 +29,21 @@ ul, ol {
 list-style: none;
 }
 .lst_ty4 li {
+height: 254px;
 float: left;
 position: relative;
 width: 220px;
 margin: 0 15px;
+margin-bottom: 30px;
 padding: 0 2px 32px 0;
 background: url(../images/bg_list1.png) no-repeat;
+
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+-webkit-box-shadow: 0px 1px 3px rgba(0,0,0,0.10);
+-moz-box-shadow: 0px 1px 3px rgba(0,0,0,0.10);
+box-shadow: 0px 1px 3px rgba(0,0,0,0.10);
 }
 .lst_ty4 li .effect_img {
 display: block;
@@ -126,7 +135,7 @@ text-overflow: ellipsis;
 color: #6c9f31;
 }
 .lst_ty4 li .count {
-padding: 14px 16px 0;
+padding: 5px 10px 0;
 }
 .count {
 overflow: hidden;

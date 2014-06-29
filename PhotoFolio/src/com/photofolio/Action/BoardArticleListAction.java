@@ -21,7 +21,7 @@ public class BoardArticleListAction implements Action {
 			HttpServletResponse response) throws Exception {
 
 		// 목록 초기값
-		int emblem = 0, pageSize = 20, pageNum = 1;
+		int emblem = 0, pageSize = 20, pageNum = 0;
 		String searchKey = "";
 
 		// page & 검색어 데이터 받을시
@@ -48,18 +48,19 @@ public class BoardArticleListAction implements Action {
 
 		BoardDAO dao = BoardDAO.getInstance();
 
-		// 검색된 게시물 건수 
-		int BoardListCount = dao.articleCount(searchKey, emblem);
-		request.setAttribute("searchCount", BoardListCount);
+		// 검색된 총 게시물 건수 
+		int boardListCount = dao.articleCount(searchKey, emblem);
+		request.setAttribute("boardListCount", boardListCount);
 
-		// 페이징 처리
+		
+		// 페이징 처리		
 		int visiblePageNum = 10;
 		int pagecount = 0;
 		int beginPage = 0;
 		int endPage = 0;
-		if (BoardListCount != 0) {// 게시물이 없는 경우
-			pagecount = BoardListCount / pageSize;// 115건 = 11page
-			if (BoardListCount % pageSize > 0) {// 115건 = 나머지 5 true
+		if (boardListCount != 0) {// 게시물이 없는 경우
+			pagecount = boardListCount / pageSize;// 115건 = 11page
+			if (boardListCount % pageSize > 0) {// 115건 = 나머지 5 true
 				pagecount++;// 11page++ = 12page
 			}
 			beginPage = (pageNum - 1) / visiblePageNum * visiblePageNum + 1;// 10단위
@@ -73,9 +74,10 @@ public class BoardArticleListAction implements Action {
 		request.setAttribute("beginpage", beginPage);
 		request.setAttribute("endpage", endPage);
 
-		// category
+		// 엠블럼
 		request.setAttribute("emblemlist", dao.emblemList());
 
+	
 		// list
 		List<Article> articleList = dao.articleList(searchKey, emblem, pageNum, pageSize);
 

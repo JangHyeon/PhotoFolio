@@ -9,7 +9,7 @@ $(function() {
 				alert("삭제에 실패했습니다\n다시 시도해 주세요");
 			}else{
 				alert("삭제되었습니다.");
-				location.href="../Sample.jsp";
+				location.href="../boardorder/list";
 			}
 		}).fail(function() {
 			alert("서버와 통신 중 문제가 발생했습니다");

@@ -9,7 +9,7 @@
 	        <div class="search">	<!-- title="제목 또는 크리에이터 검색"  -->
 				<input type="text" id="search" name="search" value="" title="제목 또는 크리에이터 검색" style="color: rgb(160, 160, 160);" 
 				onfocus="checkSearchAreaOnFocus(this);" onkeypress="checkSearchQuery(event, this.value);">
-	            <a href="javascript:clickSearchQuery();" title="검색" class="btn">검색</a>
+	            <a href="#" title="검색" class="btn">검색</a>
 	        </div>
 			<a href="<%=request.getContextPath()%>/boardorder/randomarticle" title="랜덤 일러스트레이션" class="btn_random">랜덤 일러스트레이션</a>
 				<div id="cmt_noti" class="cmtnoti_info">

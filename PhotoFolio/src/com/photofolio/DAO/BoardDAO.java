@@ -446,6 +446,7 @@ public class BoardDAO {
 			//sql+=searchType+" like ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%"+searchKey+"%");
+			pstmt.setString(2, "%"+searchKey+"%");
 			rs =pstmt.executeQuery();
 		    
 			if(rs.next()){
@@ -490,8 +491,7 @@ public class BoardDAO {
 	//목록
 	public List<Article> articleList(String searchKey, int emblem, int pageNum, int pageSize){
 		ArrayList<Article> list = new ArrayList<Article>();
-		try {
-			
+		try {			
 			int start = pageNum * pageSize - (pageSize -1); 
 			int end = pageNum * pageSize;
 			
@@ -507,7 +507,7 @@ public class BoardDAO {
 			pstmt.setString(1, "%"+searchKey+"%");
 			pstmt.setString(2, "%"+searchKey+"%");
 			pstmt.setInt(3, start);
-			pstmt.setInt(4, pageSize);
+			pstmt.setInt(4, end);
 			
 			rs =pstmt.executeQuery();
 		    
