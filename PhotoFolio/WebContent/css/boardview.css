@@ -476,10 +476,42 @@ right: 0;
 .comment_list .info .rt .btn_report {
 color: #969696;
 }
+.comment_list .info a:hover{
+	text-decoration: underline;
+}
 .comment_list .txt {
 margin-top: 2px;
 padding-right: 30px;
 line-height: 22px;
 word-wrap: break-word;
 word-break: break-all;
+}
+
+.info em{
+	font-size:9px;
+	font-weight: bold;
+	color: #74ac33;
+}
+
+.rt strong{
+	font-size:10px;
+	font-weight: bold;
+	color: #ff6a33;
+	margin-right: 2px;
+}
+
+#comment_tit{
+	position: absolute;
+	float: right;
+	right:0;
+	margin-right: 22px;
+	font-size: 7pt;
+	color: #8d8d8d;
+	background-color:rgba(255,255,255,.7);
+}
+
+#articlereport{
+	font-size:10px;
+	font-weight: bold;
+	color: #ff6a33;
 }

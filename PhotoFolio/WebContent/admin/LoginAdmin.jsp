@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,19 +10,18 @@
 <body>
 	<div id="page">
 		<!-- Header -->
-		<jsp:include page="../include/header.jsp"/>
+		<jsp:include page="../include/header.jsp" />
 
-		<div id="main">
-				<form action="../adminorder/login" method="post">
-					<h3>포토폴리오</h3>
-					로그인<br>
-					<input type="text" name="id"  placeholder="아이디"><br>
-					<input type="password" name="pwd" placeholder="비밀번호"><br>
-					<input type="submit" value="로그인">
-				</form>	
+		<div id="main" align="center">
+			<form action="../adminorder/login" method="post">
+				<h2>로그인</h2>
+				<br> <input type="text" name="id" placeholder="아이디"><br>
+				<input type="password" name="pwd" placeholder="비밀번호"><br>
+				<input type="submit" value="로그인">
+			</form>
 		</div>
 		<!-- Footer -->
-		<jsp:include page="../include/footer.jsp"/>
+		<jsp:include page="../include/footer.jsp" />
 
 	</div>
 </body>

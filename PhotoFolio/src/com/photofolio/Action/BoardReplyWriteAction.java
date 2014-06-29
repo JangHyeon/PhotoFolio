@@ -14,7 +14,7 @@ import com.photofolio.DAO.BoardDAO;
 import com.photofolio.DTO.Reply;
 import com.supinan.util.text.SupinanDateFormat;
 
-public class ReplyWriteAction implements Action {
+public class BoardReplyWriteAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
@@ -72,8 +72,8 @@ public class ReplyWriteAction implements Action {
 			result += "</a>";
 			result += "<div class='info'>";
 			result += "<a href=\""+path+"/memberorder/likeinfoprocess?id="+nickname +"\" class='name'>"+nickname+"("+dto.getId()+")</a>";
-			result += "<span class='date'>"+ SupinanDateFormat.getInstance("yyyy.MM.dd HH.mm").format(today)+ " 지금막" +"</span>";
-			result += "<a href=\"javascript:deleteComment('"+reply_idx+"');\" class=\"del\">삭제</a>";
+			result += "<span class='date'>"+ SupinanDateFormat.getInstance("yyyy.MM.dd HH.mm").format(today)+ "<em> new </em>" +"</span>";
+			result += "<a href='#' class='del'>삭제</a>";
 			result += "<span class='rt'>";
 			result += "</span>";
 			result += "</div>";

@@ -92,6 +92,11 @@ alter table image add tag varchar(200);
 alter table image add subject varchar(100) not null;
 alter table image add content varchar(1000) not null;
 
+alter constraint image modify constraint foreign key(idx) references article(idx) on delete cascad
+alter table image add foreign key image_ibfk_1(idx) references article(idx) on delete cascade
+ALTER TABLE image DROP FOREIGN KEY image_ibfk_2
+show create table image
+
 alter table image drop thumbnail;
 
 commit
