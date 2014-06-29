@@ -57,7 +57,7 @@ h5{
 }
 
 html{
-	height:100%;
+	
 }
 
 body {
@@ -235,6 +235,10 @@ display: inline-block;
 float: left;
 position: relative;
 z-index: 3;
+}
+
+#logo-link{
+	color:#fff;
 }
 
 #nav-wrap {
@@ -510,7 +514,6 @@ text-align: center;
 	clear: both;
     /* padding: 30px 30px 15px 30px; */
     background-color: #fff;
-	backgroun-color:#888;
 
     margin-left: auto;
     margin-right: auto;
@@ -524,14 +527,7 @@ text-align: center;
     -moz-border-radius: 3px 3px 0px 0px; */
  	
  }
-.loginform{
-	clear: both;
-	width:326px;
-    margin-left: auto;
-    margin-right: auto;
-    
-    padding-top:
-}
+
 
 
 /* DIV Footer
@@ -553,8 +549,11 @@ text-align: center;
 }
  */
 #footer{
+	margin-top: 30px;
 	position:absolute;
 	left:0px;
+	right:0px;
+	/* bottom:0px; */
 	width:100%;
 	min-width:980px;
     background-color: #fff;
@@ -572,6 +571,7 @@ padding-top: 16px;
 .footer_wrap address {
 padding: 2px 0 0 10px;
 font-weight: bold;
+margin-bottom:15px;
 color: #858585;
 }
 em, address {
@@ -799,49 +799,115 @@ table.memberlist .writeDate{
 }
 
 .lbl {
-position: absolute;
-top: 16px;
-left: 15px;
-z-index: 8;
-font-size: 15px;
-color: #999;
-line-height: 16px;
+	position: absolute;
+	top: 16px;
+	left: 15px;
+	z-index: 8;
+	font-size: 15px;
+	color: #999;
+	line-height: 16px;
 }
 .input_row {
-position: relative;
-border: solid 1px #dadada;
-padding: 10px 35px 10px 15px;
-margin: 0 0 10px;
-background: #fff;
-width: 200px;
+	position: relative;
+	border: solid 1px #dadada;
+	padding: 10px 35px 10px 15px;
+	margin: 0 0 10px;
+	background: #fff;
+	width: 200px;
 }
 .int {
-position: relative;
-width: 100%;
-padding: 7px 0 6px;
-height: 16px;
-z-index: 9;
-border: none;
-background: #fff;
-font-size: 15px;
-color: #000;
-line-height: 16px;
+	position: relative;
+	width: 100%;
+	padding: 7px 0 6px;
+	height: 16px;
+	z-index: 9;
+	border: none;
+	background: #fff;
+	font-size: 15px;
+	color: #000;
+	line-height: 16px;
 }
 
 .loginbtn{
-background: -moz-linear-gradient(top, #6c9f31, #6c9f31);
-background: -webkit-gradient(linear,0%,0%,0%,80%,from(#6c9f31),to(#6c9f31));
-background: #6c9f31;
+	background: -moz-linear-gradient(top, #6c9f31, #6c9f31);
+	background: -webkit-gradient(linear,0%,0%,0%,80%,from(#6c9f31),to(#6c9f31));
+	background: #6c9f31;
+	
+	width:100px;
+	-webkit-border-radius:25px 25px 25px 25px;
+	-moz-border-radius: 25px 25px 25px 2px;
+	border-radius: 25px 25px 25px 25px;
+	
+	color: #fff;
+	font-weight: bold;
+	fontsize: 18px;
+	padding: 10px 8px;
+}
 
-width:100px;
--webkit-border-radius:25px 25px 25px 25px;
--moz-border-radius: 25px 25px 25px 2px;
-border-radius: 25px 25px 25px 25px;
-
-color: #fff;
-font-weight: bold;
-fontsize: 18px;
-padding: 10px 8px;
+.lst_ty4 li .profile .mask,
+#header .user_info .profile_lst .ic ,
+#header .user_info .profile .mask{
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	overflow: hidden;
+	background: url(../images/sp_common2.png) no-repeat 0 0;
+	font-size: 0;
+	line-height: 900em;
 }
 
 
+#header .user_info .profile .mask {
+	background-position: -381px -170px;
+	width:32px;
+	height:32px;
+}
+
+#header .user_info .profile .thmb {
+display: block;
+width: 100%;
+height: 100%;
+}
+
+#header .user_info .profile_lst {
+position: absolute;
+top: 32px;
+left: -30px;
+z-index: 100;
+padding-top: 12px;
+}
+
+#header .user_info .profile_lst .ic {
+position: absolute;
+top: 5px;
+left: 46px;
+width: 22px;
+height: 8px;
+margin-left: -11px;
+background-position: -45px -60px;
+}
+
+#header .user_info .profile_lst ul {
+padding: 6px 0;
+border: 1px solid #e6e6e6;
+background: #fff;
+box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+#header .user_info .profile_lst li {
+background: #fff;
+line-height: 28px;
+}
+
+#header .user_info .profile_lst li a {
+display: block;
+padding: 0 16px;
+text-decoration: none;
+white-space: nowrap;
+}
+
+#header .user_info .profile_lst a:hover {
+	background-color: #eee;
+}

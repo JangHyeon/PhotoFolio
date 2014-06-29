@@ -7,6 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>SamplePage</title>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <link type="text/css" rel="stylesheet" href="css/common.css">
 
 </head>

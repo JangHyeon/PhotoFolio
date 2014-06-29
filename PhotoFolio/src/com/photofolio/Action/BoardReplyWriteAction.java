@@ -64,14 +64,14 @@ public class BoardReplyWriteAction implements Action {
 		if(reply_idx>0){
 			// 업로드 결과 전송
 			result =  "<li id='comment_"+reply_idx+"'>";
-			result += "<a href='"+path+"/memberorder/likeinfoprocess?id="+nickname +"' class='author'>";
+			result += "<a href='"+path+"/memberorder/likeinfoprocess?id="+id +"' class='author'>";
 			result += "<span class='thmb'>";
 			result += "<img src=\""+path+"/storage/profile/"+profileimg+"\" width='32' height='32' " + 
 						"alt='"+nickname+"' onerror=\"this.src='../images/no_profile_32.gif'\"><span class='mask'></span>";
 			result += "</span>";
 			result += "</a>";
 			result += "<div class='info'>";
-			result += "<a href=\""+path+"/memberorder/likeinfoprocess?id="+nickname +"\" class='name'>"+nickname+"("+dto.getId()+")</a>";
+			result += "<a href=\""+path+"/memberorder/likeinfoprocess?id="+id +"\" class='name'>"+nickname+"("+dto.getId()+")</a>";
 			result += "<span class='date'>"+ SupinanDateFormat.getInstance("yyyy.MM.dd HH.mm").format(today)+ "<em> new </em>" +"</span>";
 			result += "<a href='#' class='del'>삭제</a>";
 			result += "<span class='rt'>";

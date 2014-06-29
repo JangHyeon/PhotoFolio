@@ -6,11 +6,14 @@ public class Article {
 
 		private int idx;
 		private String id;
+		private String nickname;
 		private String subject;
 		private String content;
+		private String profileimg;
 		private Date writedate;
 		private int count;
 		private int like;
+		private int reply;
 		private int report;
 		private int secret;
 		private String thumbnail;
@@ -74,5 +77,23 @@ public class Article {
 		}
 		public void setSecret(int secret) {
 			this.secret = secret;
+		}
+		public String getNickname() {
+			return nickname;
+		}
+		public void setNickname(String nickname) {
+			this.nickname = nickname;
+		}
+		public int getReply() {
+			return reply;
+		}
+		public void setReply(int reply) {
+			this.reply = reply;
+		}
+		public String getProfileimg() {
+			return profileimg;
+		}
+		public void setProfileimg(String profileimg) {
+			this.profileimg = profileimg;
 		}
 }

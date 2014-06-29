@@ -8,6 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>SamplePage</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <link type="text/css" rel="stylesheet" href="../css/common.css">
 
 <style type="text/css">
@@ -18,8 +20,6 @@
 	height:200px;
     float:left;
     margin: 10px;
-	
-
 }
 #d{
 clear: both;
@@ -60,11 +60,7 @@ String nickname = (String)session.getAttribute("nickname");
      
       <div id="mylist"  >
       <center>
-        <%for(int i=0; i<info.size();i++){
-        
-        
-        
-        %>
+        <%for(int i=0; i<info.size();i++){%>
         <img src="<%=request.getContextPath()%>/storage/profile/<%=info.get(i).getProfileimg()%>"style="width:180px;height:180px"><br>
         닉네임:<%=info.get(i).getNickname() %><br>
         지역:<%=info.get(i).getAddress() %><br>

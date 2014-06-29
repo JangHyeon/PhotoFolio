@@ -13,6 +13,9 @@ import javax.servlet.http.HttpSession;
 import com.photofolio.Action.Action;
 import com.photofolio.Action.ActionForward;
 import com.photofolio.Action.BoardArticleDeleteAction;
+import com.photofolio.Action.BoardArticleLikeAction;
+import com.photofolio.Action.BoardArticleListAction;
+import com.photofolio.Action.BoardArticleRandomViewAction;
 import com.photofolio.Action.BoardArticleReportAction;
 import com.photofolio.Action.BoardArticleViewAction;
 import com.photofolio.Action.BoardArticleWriteAction;
@@ -67,13 +70,41 @@ public class BoardFrontController extends HttpServlet {
 		HttpSession session = request.getSession();
 		System.out.println("---------------로그인 ID : "+(String)session.getAttribute("id"));
 		
-		////////////////로그인 체크가 필요한 커맨드
-		if(session.getAttribute("id")==null){
+				
+		//////////////////로그인 없이 사용가능한 커맨드
+		if (commend.equals("/boardorder/view")) {//게시물 뷰
+			action = new BoardArticleViewAction();
+			try {
+				forward = action.execute(request, response);
+				System.out.println("view : forward");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(commend.equals("/boardorder/randomarticle")){//랜덤 게시물
+			action = new BoardArticleRandomViewAction();
+			try {
+				forward = action.execute(request, response);
+				System.out.println("randomarticle : forward");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}			
+		}else if(commend.equals("/boardorder/list")){//게시물 리스트
+			action = new BoardArticleListAction();
+			try {
+				forward = action.execute(request, response);
+				forward = new ActionForward();
+				forward.setRedirect(false);
+				forward.setPath("/board/list.jsp");
+				System.out.println("list : forward");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}			
+		}else if(session.getAttribute("id")==null){/////////////////////////////////로그인 체크가 필요한 커맨드
         	request.setAttribute("msg", "로그인이 필요한 서비스 입니다.");
-			request.setAttribute("url", "../Sample.jsp");
+			request.setAttribute("url", ContextPath+"/member/login.jsp");
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("../board/redirect.jsp");
+			forward.setPath("/board/redirect.jsp");
 		}else if (commend.equals("/boardorder/thumbnailupload")) {//섬네일 업로드
 			action = new BoardThumbnailUpLoadAction();
 			try {
@@ -158,18 +189,17 @@ public class BoardFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		
-		//////////////////로그인 없이 사용가능한 커맨드
-		if (commend.equals("/boardorder/view")) {//게시물 뷰
-			action = new BoardArticleViewAction();
+		}else if (commend.equals("/boardorder/articlelike")) {//게시물 좋아요
+			action = new BoardArticleLikeAction();
 			try {
 				forward = action.execute(request, response);
-				System.out.println("view : forward");
+				System.out.println("articledelete : ajax");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+		
+		
 		
 		
 
@@ -180,10 +210,9 @@ public class BoardFrontController extends HttpServlet {
 			if (forward.isRedirect()) {
 				System.out.println("forward.isRedirect : " + forward.getPath());
 				response.sendRedirect(forward.getPath());
-			} else {
+			}else{
 				System.out.println("forward.forward : " + forward.getPath());
-				RequestDispatcher rd = request.getRequestDispatcher(forward
-						.getPath());
+				RequestDispatcher rd = request.getRequestDispatcher(forward.getPath());
 				rd.forward(request, response);
 			}
 		}

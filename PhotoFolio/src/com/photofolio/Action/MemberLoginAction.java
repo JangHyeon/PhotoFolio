@@ -14,7 +14,7 @@ public class MemberLoginAction implements Action {
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		 int result =0;
-		System.out.println("현재 session 정보adfdsfmdhshbsdab : " );
+		System.out.println("현재 session 정보 : " );
 			LoginDAO logindao = new LoginDAO();
 			Member memberdto = new Member();
 		 	HttpSession session =  request.getSession();
@@ -30,8 +30,8 @@ public class MemberLoginAction implements Action {
 				session.setAttribute("profileimg", memberdto.getProfileimg());
 			}
 			
-		     String msg = "로그인";
-	            String url = "../Sample.jsp";
+		    String msg = "로그인";
+	        String url = request.getContextPath()+"/member/login.jsp";
 
 	       
 			request.setAttribute("result", result);

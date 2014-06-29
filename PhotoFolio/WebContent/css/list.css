@@ -1,0 +1,174 @@
+@charset "UTF-8";
+
+.count strong{
+display: inline-block;
+overflow: hidden;
+width: 10px;
+height: 10px;
+background: url(../images/sp_btn_v22.png) no-repeat -220px -25px;
+font-size: 0;
+line-height: 900em;
+vertical-align: middle;
+}
+
+.sort_theme~.lst_ty4 {
+clear: both;
+}
+.lst_ty4 {
+width: 100%;
+overflow: hidden;
+margin: 0 -6px;
+padding: 6px;
+position: relative;
+}
+.lst_ty4 ul {
+clear: both;
+margin: 0 -17px 0 -15px;
+}
+ul, ol {
+list-style: none;
+}
+.lst_ty4 li {
+float: left;
+position: relative;
+width: 220px;
+margin: 0 15px;
+padding: 0 2px 32px 0;
+background: url(../images/bg_list1.png) no-repeat;
+}
+.lst_ty4 li .effect_img {
+display: block;
+}
+.effect_img {
+position: relative;
+text-decoration: none;
+}
+.effect_img .thmb {
+position: relative;
+margin: 0;
+}
+.effect_img .img {
+height:100%;
+width: 100%;
+-moz-transform: rotateY(360deg);
+transition-property: opacity;
+transition-duration: .15s;
+transition-timing-function: linear;
+transition-delay: 0;
+}
+.effect_img img {
+vertical-align: top;
+}
+.lst_ty4 li .thmb .bdr {
+bottom: 0;
+}
+.effect_img .thmb .bdr {
+float: none;
+position: absolute;
+right: 0;
+left: 0;
+height: 1px;
+background: #000;
+opacity: 0.08;
+filter: alpha(opacity=8);
+}
+.lst_ty4 li .info {
+height: 63px;
+padding: 10px 10px 0;
+border-bottom: 1px solid #ebebeb;
+}
+.lst_ty4 li .profile {
+position: relative;
+width: 42px;
+height: 42px;
+margin-right: 13px;
+float: left;
+}
+img {
+vertical-align: top;
+}
+.lst_ty4 li .profile .mask {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-position: -370px -210px;
+}
+
+.lst_ty4 li .title {
+padding: 2px 0 7px;
+font-size: 14px;
+font-weight: bold;
+}
+.lst_ty4 li .title, .lst_ty4 li .author {
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+}
+.lst_ty4 li .title a {
+color: #2a2a2a;
+}
+.lst_ty4 li .info a {
+text-decoration: none;
+cursor: pointer;
+}
+.lst_ty4 li .author {
+font-size: 13px;
+color: #858585;
+}
+.lst_ty4 li .title, .lst_ty4 li .author {
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+}
+.lst_ty4 li .author a {
+color: #6c9f31;
+}
+.lst_ty4 li .count {
+padding: 14px 16px 0;
+}
+.count {
+overflow: hidden;
+color: #969696;
+}
+.count a:first-child, .count span:first-child {
+margin-left: 0;
+}
+.count a, .count span {
+display: inline-block;
+vertical-align: middle;
+margin-left: 13px;
+}
+Inherited from p.count
+.count {
+overflow: hidden;
+color: #969696;
+}
+.count .hit strong {
+background-position: 0 -70px;
+}
+.count strong {
+margin-right: 5px;
+float: left;
+width: 18px;
+height: 18px;
+}
+.count em {
+display: block;
+float: left;
+line-height: 17px;
+}
+em, address {
+font-style: normal;
+}
+
+.count .like strong {
+margin-right: 4px;
+background-position: -20px -70px;
+}
+
+.count .reply strong {
+margin-right: 3px;
+background-position: -40px -70px;
+}

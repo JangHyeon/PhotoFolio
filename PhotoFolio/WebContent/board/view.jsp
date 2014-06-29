@@ -109,9 +109,7 @@
 								<span id="projectDeleteFormBar" class="bar">|</span>
 								</c:if>
 								<a id="openReportProjectButton" href="#">신고</a>
-								<c:if test="${article.report>0}">
-								<p id="articlereport"><em>${article.report}</em>건의 신고가 있습니다</p>
-								</c:if>
+								<p id="articlereport" <c:if test="${article.report==0}">style='display:none'</c:if>><em>${article.report}</em>건의 신고가 있습니다</p>
 							</p>
 						</div>
 					</div>
@@ -122,7 +120,9 @@
 							<div class="like_uio">
 								<a id="likeButton" href="#" class="btn_circle like _like_link">
 								<span class="ic"><span>
-								</span></span>좋아요<em id="likeCount">${article.like}</em></a>
+								</span></span>좋아요
+								<em id="likeCount">${article.like}</em>
+								</a>
 								<span id="likeSpan" class="btn_circle like _like" style="display: none;"></span>
 								<p id="fadeAlert" class="ly_noti" style="display:none;">
 									<span class="ct">이미 좋아요 했습니다.<span class="ic"></span></span>
@@ -165,7 +165,7 @@
 									</span>
 								</a>
 								<div class="info">
-									<a href="/${reply.id}" class="name">${reply.nickname}(${reply.id})</a>
+									<a href="<%=path%>/memberorder/likeinfoprocess?id=${reply.id}" class="name">${reply.nickname}(${reply.id})</a>
 									<span class="date"><fmt:formatDate value="${reply.writedate}" pattern="yyyy.MM.dd HH.mm" /></span>
 									<!-- 삭제, 신고 토글 -->
 									<c:if test="${sessionScope.id==reply.id}">
@@ -177,9 +177,9 @@
 									<c:if test="${sessionScope.id!=reply.id}">
 									<a href="#" class="btn_report">신고</a>
 									</c:if>
-									<c:if test="${reply.report!=0}">
-									<Strong>${reply.report}</Strong>
-									</c:if>
+									
+									<Strong <c:if test="${reply.report==0}">style='display:none'</c:if>>${reply.report}</Strong>
+									
 									</span>
 								</div>
 								<p class="txt">${reply.content}</p>
