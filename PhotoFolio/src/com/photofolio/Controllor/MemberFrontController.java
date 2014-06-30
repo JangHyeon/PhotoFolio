@@ -90,7 +90,7 @@ public class MemberFrontController extends HttpServlet {
 	    	  
 	    	  forward = new ActionForward();
               forward.setRedirect(true);
-              forward.setPath("../Sample.jsp");  
+              forward.setPath("../boardorder/list");  
 	      }else if(command.equals("/memberorder/modifyprocess")){
 	    	  action = new MemberModifyAction();
 		         try {

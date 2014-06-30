@@ -41,7 +41,7 @@ public class MemberJoinAction implements Action {
 		}
 	    
 	     String msg = "가입";
-           String url = "../Sample.jsp";
+           String url = "../member/login.jsp";
 
         System.out.println(result);
 		request.setAttribute("result", result);

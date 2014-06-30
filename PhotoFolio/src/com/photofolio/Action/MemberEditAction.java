@@ -36,7 +36,7 @@ public class MemberEditAction implements Action{
 	
 	    
 	     String msg = "수정";
-           String url = "../Sample.jsp";
+           String url = "../member/login.jsp";
 
       
 		request.setAttribute("result", result);

@@ -31,7 +31,7 @@ public class MemberLoginAction implements Action {
 			}
 			
 		     String msg = "로그인";
-	            String url = "../Sample.jsp";
+	            String url = "../member/login.jsp";
 
 	       
 			request.setAttribute("result", result);
