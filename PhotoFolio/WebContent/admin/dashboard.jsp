@@ -111,7 +111,13 @@
 								</tr>
 								<%
 									List memberlist = (List) request.getAttribute("memberlist");
-									for (int i = 0; i < 8; i++) {
+									int memberlistlength = memberlist.size();
+									
+									if(memberlistlength>=8){
+										memberlistlength=8;	
+									}
+									
+									for (int i = 0; i < memberlistlength; i++) {
 										Member member = (Member) memberlist.get(i);
 								%>
 								<tr>
@@ -149,10 +155,14 @@
 						</tr>
 
 						<%
-							List memberLevelList = (List) request
-									.getAttribute("memberLevelList");
+							List memberLevelList = (List) request.getAttribute("memberLevelList");
 
-							for (int i = 0; i < 8; i++) {
+							int memberLevelListlength = memberLevelList.size();
+							if(memberLevelListlength>=8){
+								memberLevelListlength=8;	
+							}
+						
+							for (int i = 0; i < memberLevelListlength; i++) {
 								Member member = (Member) memberLevelList.get(i);
 						%>
 

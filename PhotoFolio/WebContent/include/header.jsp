@@ -6,10 +6,30 @@
 		</h1>
 		
 		<div class="info">
-	        <div class="search">	<!-- title="제목 또는 크리에이터 검색"  -->
-				<input type="text" id="search" name="search" value="" title="제목 또는 크리에이터 검색" style="color: rgb(160, 160, 160);" 
-				onfocus="checkSearchAreaOnFocus(this);" onkeypress="checkSearchQuery(event, this.value);">
-	            <a href="#" title="검색" class="btn">검색</a>
+	        <div class="search">
+	        	<!-- title="제목 또는 크리에이터 검색"  -->
+	        	<form id="search" action="<%=request.getContextPath()%>/boardorder/list" method="get">
+					<input type="text" id="searchKey" name="searchKey" value="${searchKey}" title="제목 또는 크리에이터 검색">
+	            	<a href="#" id="searchBtn" title="검색" class="btn">검색</a>
+	            </form>
+	            <script type="text/javascript">
+		            $('#searchKey').on('blur',function(){
+		            	$(this).on('click',function(){
+		            		$(this).val("");
+		            		$(this).off('click');
+		            	});
+	            	});
+		            $('#searchBtn').on('click',function(e){
+	            		e.preventDefault();
+	            		$('#search').submit();		            	
+		            });
+		            $('#searchKey').on('keypress',function(e){
+		            	if(e.keyCode===13){
+		            		e.preventDefault();
+		            		$('#search').submit();
+		            	}
+		            });
+	            </script>
 	        </div>
 			<a href="<%=request.getContextPath()%>/boardorder/randomarticle" title="랜덤 일러스트레이션" class="btn_random">랜덤 일러스트레이션</a>
 				<div id="cmt_noti" class="cmtnoti_info">

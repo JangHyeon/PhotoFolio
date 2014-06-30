@@ -40,6 +40,12 @@
 					</select>
 				</div>
 			</div>
+			
+			<c:choose>
+			<c:when test="${articleList==null}">
+				결과가 음습니다.
+			</c:when>
+			<c:otherwise>
 			<div class="lst_ty4">
 				<ul>
 					<c:forEach var="article" items="${articleList}">
@@ -64,14 +70,10 @@
 							<span class="like"><strong>좋아요</strong><em id="likeEl_24499">${article.like}</em></span>
 							<span class="reply"><strong>댓글수</strong><em>${article.reply}</em></span>
 						</p>
-					
 					</li>
 					</c:forEach>
 				</ul>
 			</div>
-			
-			
-			
 			<div class="pageArea">
 				<!-- 이전 링크 -->
 				<c:if test="${beginpage>10}">
@@ -91,7 +93,8 @@
 					<a href="<%=path%>/boardorder/list?pageNum=${pageNum+1}&pageSize=${pageSize}&emblem_no=${emblem_no}&searchKey=${searchKey}">다음</a>
 				</c:if> 
 			</div>
-			
+			</c:otherwise>
+			</c:choose>
 		</div>
 		<!-- Footer -->
 		<jsp:include page="/include/footer.jsp" />

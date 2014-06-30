@@ -22,11 +22,8 @@
 <script src="<%=path%>/cropper/cropper.js"></script>
 <link  href="<%=path%>/cropper/cropper.css" rel="stylesheet">
 
-
 <link href="<%=path%>/css/common.css" rel="stylesheet">
 <link href="<%=path%>/css/boarduploader.css" rel="stylesheet">
-
-
 </head>
 <body>
 	<div id="page">

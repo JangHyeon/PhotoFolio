@@ -441,12 +441,13 @@ public class BoardDAO {
 		int result =0;
 		try {
 			conn = ds.getConnection();
-			String sql = "SELECT count(idx) as count from article where secret=0 and (content like ? or subject like ?)";
+			String sql = "SELECT count(idx) as count from article a join member m on m.id=a.id where secret=0 and (content like ? or subject like ? or nickname like ? )";
 			//if(emblem!=0) sql+="emblem = "+emblem+" AND ";
 			//sql+=searchType+" like ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%"+searchKey+"%");
 			pstmt.setString(2, "%"+searchKey+"%");
+			pstmt.setString(3, "%"+searchKey+"%");
 			rs =pstmt.executeQuery();
 		    
 			if(rs.next()){
@@ -492,22 +493,23 @@ public class BoardDAO {
 	public List<Article> articleList(String searchKey, int emblem, int pageNum, int pageSize){
 		ArrayList<Article> list = new ArrayList<Article>();
 		try {			
-			int start = pageNum * pageSize - (pageSize -1); 
+			int start = pageNum * pageSize - (pageSize -1)-1; 
 			int end = pageNum * pageSize;
 			
 			conn = ds.getConnection();
 			String sql = "select a.idx as idx, a.id as id, nickname, profileimg, subject, thumbnail, acount, alike, reply_count from "+
 					"(select a.idx, id, subject, content, thumbnail, a.acount, alike, COALESCE(re.recount,0) as reply_count from article a "+ 
 					"left join (select count(reply_idx) as recount, idx from reply group by idx) re on a.idx=re.idx) a "+
-					"inner join member m on m.id=a.id where subject like ? or content like ? order by idx desc limit ?,?";
+					"inner join member m on m.id=a.id where subject like ? or content like ? or nickname like ? order by idx desc limit ?,?";
 			/*if(emblem!=0){
 				sql+="WHERE C.category="+pageDTO.getCategory();
 			}*/
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, "%"+searchKey+"%");
 			pstmt.setString(2, "%"+searchKey+"%");
-			pstmt.setInt(3, start);
-			pstmt.setInt(4, end);
+			pstmt.setString(3, "%"+searchKey+"%");
+			pstmt.setInt(4, start);
+			pstmt.setInt(5, end);
 			
 			rs =pstmt.executeQuery();
 		    

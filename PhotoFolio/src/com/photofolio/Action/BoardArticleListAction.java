@@ -21,7 +21,7 @@ public class BoardArticleListAction implements Action {
 			HttpServletResponse response) throws Exception {
 
 		// 목록 초기값
-		int emblem = 0, pageSize = 20, pageNum = 0;
+		int emblem = 0, pageSize = 20, pageNum = 1;
 		String searchKey = "";
 
 		// page & 검색어 데이터 받을시
@@ -35,12 +35,21 @@ public class BoardArticleListAction implements Action {
 				emblem = Integer.parseInt(request.getParameter("emblem"));
 			}
 		}
+		if (request.getParameter("pageSize") != null) {
+			if (!request.getParameter("pageSize").trim().equals("")) {
+				pageSize = Integer.parseInt(request.getParameter("pageSize"));
+			}
+		}
 		if (request.getParameter("pageNum") != null) {
 			if (!request.getParameter("pageNum").trim().equals("")) {
 				pageNum = Integer.parseInt(request.getParameter("pageNum"));
 			}
 		}
-
+		
+		System.out.println(searchKey);
+		
+		System.out.println(pageNum);
+		
 		request.setAttribute("searchKey", searchKey);
 		request.setAttribute("emblem", emblem);
 		request.setAttribute("pageSize", pageSize);
@@ -52,6 +61,7 @@ public class BoardArticleListAction implements Action {
 		int boardListCount = dao.articleCount(searchKey, emblem);
 		request.setAttribute("boardListCount", boardListCount);
 
+		System.out.println("boardListCount"+boardListCount);
 		
 		// 페이징 처리		
 		int visiblePageNum = 10;
@@ -63,13 +73,16 @@ public class BoardArticleListAction implements Action {
 			if (boardListCount % pageSize > 0) {// 115건 = 나머지 5 true
 				pagecount++;// 11page++ = 12page
 			}
-			beginPage = (pageNum - 1) / visiblePageNum * visiblePageNum + 1;// 10단위
-																			// 계산
+			beginPage = (pageNum - 1) / visiblePageNum * visiblePageNum + 1;// 10단위 계산
 			endPage = beginPage + (visiblePageNum - 1);
 			if (endPage > pagecount) {
 				endPage = pagecount;
 			}
 		}
+
+		System.out.println("beginpage"+beginPage);
+		System.out.println("endpage"+endPage);
+		
 		request.setAttribute("pagecount", pagecount);
 		request.setAttribute("beginpage", beginPage);
 		request.setAttribute("endpage", endPage);
