@@ -29,8 +29,19 @@ public class MemberLikemeAction implements Action{
 		 request.setAttribute("info",info);
 	     request.setAttribute("check", "checkno");
 		ActionForward forward = new ActionForward();
-		forward.setRedirect(false);
-		forward.setPath("../member/likeinfo.jsp");
+		HttpSession session = request.getSession();
+		   String myid = (String)session.getAttribute("id");
+		   
+		
+		
+		if(myid == null||myid.equals("")||myid.equals("null")){
+				forward.setRedirect(true);
+				forward.setPath("../Sample.jsp");
+			}else{
+				forward.setRedirect(false);
+				forward.setPath("../member/likeinfo.jsp");
+			}
+		
 		return forward;
 		
 	}

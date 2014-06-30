@@ -48,7 +48,10 @@ String id=  request.getParameter("id");
 String check = (String)request.getAttribute("check");
 String profileimg = (String)session.getAttribute("profileimg");
 String nickname = (String)session.getAttribute("nickname");
+
 %>
+
+
 
 </head>
 <body>
@@ -93,18 +96,16 @@ String nickname = (String)session.getAttribute("nickname");
 		  	이름:<a href="likeinfo2process?id=<%=list.get(j).getId() %>"><%=list.get(j).getNickname()%>님 </a><br>
 		      	<%=list.get(j).getEmail()%><br>
 		    	 소개:<%=list.get(j).getMemo()%><br><br>
-		  <%if(myid.equals(id)&&check.equals("checkok")){  
-
-		  		System.out.println(list.get(j).getCheckintreset());
+		  <%if(myid.equals(id)&&check.equals("checkok")){
 		  	if(list.get(j).getCheckintreset() !=null){
-			 %>	 <button id="likedelete" onclick="location.href='likeadd?id=<%=list.get(j).getId()%>&myid=<%=id%>'" ><font color="yellow">★ </font>&nbsp;&nbsp;<font color="white">관심</font></button><br>
+			 %>	 <button id="likedelete" onclick="location.href='likedelete?id=<%=list.get(j).getId()%>&myid=<%=id%>'" ><font color="yellow">★ </font>&nbsp;&nbsp;<font color="white">관심</font></button><br>
 	
 		  <% 	}else{%>
 				<button id="likeadd" onclick="location.href='likeadd?id=<%=list.get(j).getId()%>&myid=<%=id%>'" ><font >★ </font>&nbsp;&nbsp;<font >관심</font></button><br>
 				
 		<%  }%>
-		  <%}else{ %>
-		<button id="likedelete" onclick="location.href='likeadd?id=<%=list.get(j).getId()%>&myid=<%=id%>'" ><font color="yellow">★ </font>&nbsp;&nbsp;<font color="white">관심</font></button><br>
+		  <%}else if(myid.equals(id)&&check.equals("checkno")){ %>
+		<button id="likedelete" onclick="location.href='likedelete?id=<%=list.get(j).getId()%>&myid=<%=id%>'" ><font color="yellow">★ </font>&nbsp;&nbsp;<font color="white">관심</font></button><br>
 		      
 		 <%}%>
 		    </center>

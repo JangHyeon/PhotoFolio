@@ -1,5 +1,6 @@
 package com.photofolio.Action;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,8 @@ public class MemberLikeyouAction implements Action {
 			HttpServletResponse response) throws Exception {
 		
 		
+		
+			
 		LikeinfoDAO likeinfodao = new LikeinfoDAO();
 		LikeinfoDAO  likeinfocheck = new LikeinfoDAO();
 		ModifyDAO modifydao = new ModifyDAO();
@@ -52,18 +55,27 @@ public class MemberLikeyouAction implements Action {
 	   
 	   
 	   
+	   HttpSession session = request.getSession();
 	   
+	   String myid = (String)session.getAttribute("id");
 	   
 	      request.setAttribute("list",list);
-	      
+	      request.setAttribute("checklist", checklist);
 	      
 	      
 	      
 		 request.setAttribute("info",info);
 		 request.setAttribute("check","checkok");
 		ActionForward forward = new ActionForward();
-		forward.setRedirect(false);
-		forward.setPath("../member/likeinfo.jsp");
+	
+	if(myid == null||myid.equals("")||myid.equals("null")){
+			forward.setRedirect(true);
+			forward.setPath("../Sample.jsp");
+		}else{
+			forward.setRedirect(false);
+			forward.setPath("../member/likeinfo.jsp");
+		}
+		
 		
 		
 		return forward;

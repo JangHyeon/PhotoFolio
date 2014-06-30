@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
 <%
 	String path = request.getContextPath();
+String id = (String)session.getAttribute("id"); 
+if(id != null && !id.equals("")){
+  response.sendRedirect("../Sample.jsp?id="+id);	
+}
 %>
 <!DOCTYPE html>
 <html>
