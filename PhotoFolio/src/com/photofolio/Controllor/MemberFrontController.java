@@ -19,6 +19,7 @@ import com.photofolio.Action.MemberDeleteAction;
 import com.photofolio.Action.MemberEditAction;
 import com.photofolio.Action.MemberJoinAction;
 import com.photofolio.Action.MemberLikeaddAction;
+import com.photofolio.Action.MemberLikedeleteAction;
 import com.photofolio.Action.MemberLikeyouAction;
 import com.photofolio.Action.MemberLikemeAction;
 import com.photofolio.Action.MemberLoginAction;
@@ -143,6 +144,16 @@ public class MemberFrontController extends HttpServlet {
 		            } catch (Exception e) {
 		               e.printStackTrace();
 	         }
+		     }else if(command.equals("/memberorder/likedelete")){
+		   	  action = new MemberLikedeleteAction();
+	            
+	            try {
+	               forward = action.execute(request, response);
+	            
+	            } catch (Exception e) {
+	               e.printStackTrace();
+       }	 
+	         
 	         }else if(command.equals("/memberorder/idcheckprocess")){
 	        	String id= request.getParameter("id");
 	        	  action = new MembercheckidAction();

@@ -24,9 +24,9 @@ public class ModifyDAO {
 			
 					
 			if(lvl>0){		
-				sql = "	SELECT *FROM member INNER JOIN creator ON member.id = creator.id where member.id = ?";
+				sql = "SELECT member.id,pwd,lvl,nickname,COALESCE(email,'email을입력하지않았습니다') as email,COALESCE(phone,'전화번호를입력하지않았습니다') as phone,COALESCE(address,'주소를 등록하지 않았습니다.') as address,profileimg,COALESCE(memo,'프로필정보를입력하지않았습니다') as memo,COALESCE(homepage,'홈페이지를 입력해주세요') as homepage,COALESCE(cmemo,'크리에이터 프로필을 입력해주세요')as cmemo,COALESCE(history,'history를입력해주세요')as history  FROM member INNER JOIN creator ON member.id = creator.id where member.id = ?";
 			}else{
-				sql="select * from member where id=?";
+				sql="select id, pwd, lvl, nickname,email,phone,COALESCE(address,'주소를 등록하지 않았습니다.')as address,profileimg,COALESCE(memo,'자기소개가 없습니다.')as memo from member where id=?";
 			}
 		    java.sql.Connection conn=null;
 		    PreparedStatement pstmt = null;
@@ -81,6 +81,7 @@ public class ModifyDAO {
 			        pstmt.setString(1,id);
 					rs = pstmt.executeQuery();
 					if(rs.next()){
+						member.setId(rs.getString("id"));
 						member.setProfileimg(rs.getString("profileimg"));
 						member.setNickname(rs.getString("nickname"));
 						member.setEmail(rs.getString("email"));
