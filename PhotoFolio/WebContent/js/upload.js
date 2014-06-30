@@ -46,9 +46,11 @@ $(function(){
    				$('crop-result').val(data);
    			}else if(data=="Dimensions do not match"){
    				alert("크롭이미지를 생성할 수 없습니다.\n크롭영역을 조정하시고 다시 시도해주세요.");
+   				$('crop-result').val("");
    				$('#img-preview').empty();
    			}else if(data=="Unsupported format or not found"){
    				alert("파일을 찾을 수 없거나 지원하는 포맷이 아닙니다.\n다시 시도해주세요.");
+   				$('crop-result').val("");   				
    				$('#img-preview').empty();
    			}
    		}

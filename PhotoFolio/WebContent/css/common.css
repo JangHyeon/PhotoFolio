@@ -211,9 +211,6 @@ table th {
 	background: rgba(47,47,47,0.98);
 	z-index: 9997;
 }
-#header a:link{
-	color:#fff;
-}
 
 #header .title{
 	color: #fff;
@@ -910,4 +907,8 @@ white-space: nowrap;
 
 #header .user_info .profile_lst a:hover {
 	background-color: #eee;
+}
+
+.write_ty1 .section_portfolio_add dl {
+overflow: hidden;
 }

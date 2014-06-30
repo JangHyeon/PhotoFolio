@@ -1,8 +1,5 @@
 package com.photofolio.Action;
 
-import java.io.PrintWriter;
-import java.io.Writer;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -27,7 +24,7 @@ public class MemberJoinAction implements Action {
 		memberdto.setPhone(request.getParameter("phone"));
 		memberdto.setAddress(request.getParameter("address"));
 		memberdto.setProfileimg(request.getParameter("profileimg"));
-		memberdto.setMemo(request.getParameter("setmemo"));
+		memberdto.setMemo(request.getParameter("memo"));
 		result =  joindao.joinmember(memberdto);
 	   
 	    
@@ -37,6 +34,7 @@ public class MemberJoinAction implements Action {
 		if(result>0){
 			session.setAttribute("id",memberdto.getId());
 			session.setAttribute("nickname",memberdto.getNickname());
+			session.setAttribute("profileimg",memberdto.getProfileimg());
 			session.setAttribute("lvl",0);
 		}
 	    

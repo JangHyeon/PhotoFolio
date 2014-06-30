@@ -206,7 +206,7 @@ public class ThumbnailCreater {
                 cropHeight = height;
             } else {
                 cropWidth = width;
-                cropHeight = (height/4)*3;
+                cropHeight = (width/4)*3;
             }
             
             int x = -1;
@@ -220,7 +220,7 @@ public class ThumbnailCreater {
                 y=0;
             } else if (width < height) {
                 x = 0;
-                y = (height - ((height/4)*3)) / 2;
+                y = (height - ((width/4)*3)) / 2;
             }
 
 			ImageStack croppedStack = sp.crop(x, y, cropWidth, cropHeight);
@@ -290,7 +290,7 @@ public class ThumbnailCreater {
 
 			sp = new StackProcessor(imp.getStack(), imp.getProcessor());
 
-            ImageStack resizedStack = sp.resize(100, 100, true);
+            ImageStack resizedStack = sp.resize(150, 150, true);
 			imp.setStack(null, resizedStack);
 			StringBuffer filePath = new StringBuffer(fileAbsolutePath);
 			String saveAsFilePath = filePath.toString();

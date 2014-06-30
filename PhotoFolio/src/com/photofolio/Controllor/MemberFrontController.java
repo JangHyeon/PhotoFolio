@@ -24,6 +24,7 @@ import com.photofolio.Action.MemberLikeyouAction;
 import com.photofolio.Action.MemberLikemeAction;
 import com.photofolio.Action.MemberLoginAction;
 import com.photofolio.Action.MemberModifyAction;
+import com.photofolio.Action.MemberSelectList;
 import com.photofolio.Action.MembercheckidAction;
 import com.photofolio.Action.profileimgUpLoadAction;
 import com.photofolio.DAO.ModifyDAO;
@@ -184,7 +185,16 @@ public class MemberFrontController extends HttpServlet {
 			            } catch (Exception e) {
 			               e.printStackTrace();
 		         }
-	         } 
+	         }else if(command.equals("/memberorder/selectlist")){
+	        	  action = new MemberSelectList();
+		          try {
+		               forward = action.execute(request, response);
+		            
+		            } catch (Exception e) {
+		               e.printStackTrace();
+	         }
+	        	 
+	         }
 		
 		
 		if(forward != null){

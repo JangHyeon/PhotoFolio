@@ -114,8 +114,8 @@ $(function(){
                 var _URL = window.URL || window.webkitURL; 
 				var img = new Image();
 		        img.onload = function() {
-		        	if (this.width < 100 || this.height < 100){
-		                alert('100 x 100 보다 큰 이미지를 선택해 주세요.');
+		        	if (this.width <= 95 || this.height <= 95){
+		                alert('96 x 96 보다 큰 이미지를 선택해 주세요.');
 		                validFlag = false;
 		        	}
 		        	_URL.revokeObjectURL(img.src);
@@ -142,10 +142,6 @@ $(function(){
 	
 });
 </script>
-
-
-
-
 </head>
 <body>
    <div id="page">
@@ -154,37 +150,35 @@ $(function(){
       <jsp:include page="../include/header.jsp"/>
       <div id="main">
       
-      
+      <div class="joinform">
       <form action="../memberorder/joinprocess" id="joinform" method="post">
-         아이디: <input type="text" id="id" name="id"><input id ="checkid"type="text" hidden="hideen"><button id="idcheck" type="button">중복체크</button><br>
-         비밀번호 : <input type="password" name="pwd"><br>
-         닉네임 : <input type="text" name="nickname"><input id ="checknickname"type="text" hidden="hideen"><button id="nicknamecheck" type="button">중복체크</button><br>
-         휴대폰번호 : <input type="text" name="phone"><br>
-         이메일 : <input type="text" name="email"><br>
-
-         주소 : <input type="text" name="address"><br>
-         프로필이미지 <br> 
-        <input id="profileimg"name="profileimg" type="hidden">
+      <h3>PhotoFolio</h3>
+      
+         <input type="text" id="id" name="id">
+         <input id ="checkid"type="text" hidden="hideen">
+         <button id="idcheck" type="button">중복체크</button>
+         <input type="password" name="pwd">
+		 <input type="text" name="nickname">
+		 <input id ="checknickname"type="text" hidden="hideen">
+		 <button id="nicknamecheck" type="button">중복체크</button>
+         <input type="text" name="phone">
+         <input type="text" name="email">
+		 <input type="text" name="address">
+         <input id="profileimg"name="profileimg" type="hidden">
          <input id="profileimgview" type="image" src="img">
          <!-- 부트 스트랩 적용 input버튼 -->
-						<!-- The fileinput-button span is used to style the file input field as button -->
-						<span class="btn btn-success fileinput-button">
-					        <i class="glyphicon glyphicon-plus"></i>
-					        <span>이미지 선택</span>
-					        <!-- The file input field used as target for the file upload widget -->
-					        <input id="profile_upFile" type="file" name="files[]" multiple/>
-					    </span>
-					    <br>
-               프로필 <br>
-<textarea rows="10" cols="30"name="memo" style="resize:none; overflow-y:scroll;"></textarea><br>
-         
+		 <!-- The fileinput-button span is used to style the file input field as button -->
+		 <span class="btn btn-success fileinput-button">
+		        <i class="glyphicon glyphicon-plus"></i>
+		        <span>이미지 선택</span>
+		        <!-- The file input field used as target for the file upload widget -->
+		        <input id="profile_upFile" type="file" name="files[]" multiple/>
+			    </span>
+		 <textarea rows="10" cols="30"name="memo" style="resize:none; overflow-y:scroll;"></textarea>
          </form>
-         
-         <br> <a id="join" class="loginbtn"><span>회원가입</span></a>&nbsp;&nbsp;
-
-  
+         <button type="submit" name="joinbtn" id="joinbtn" class="joinbtn">회원가입</button>
       </div>
-      
+      </div>
       
       <!-- Footer -->
       <jsp:include page="../include/footer.jsp"/>

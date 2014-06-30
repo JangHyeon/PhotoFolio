@@ -122,7 +122,6 @@ public class BoardThumbnailUpLoadAction implements Action {
 			outWriter.print(json.toString());
 			outWriter.flush();
 			//System.out.println(pathname+ File.separator +FilesystemName);
-			
 		}
 		return null;
 	}

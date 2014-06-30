@@ -82,6 +82,9 @@
 						<p class="txt">${image.content}</p>
 					</c:forEach>
 					<!-- 이미지 반복끝 -->
+					<div class="pf_desc">
+						${article.content}
+					</div>
 					<!-- 태그 및 정보 -->
 					<div class="info_area">
 						<dl class="tag">
