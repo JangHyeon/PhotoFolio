@@ -4,7 +4,7 @@
 	String path = request.getContextPath();
 String id = (String)session.getAttribute("id"); 
 if(id != null && !id.equals("")){
-  response.sendRedirect("../Sample.jsp?id="+id);	
+  response.sendRedirect("../member/login.jsp?id="+id);	
 }
 %>
 <!DOCTYPE html>

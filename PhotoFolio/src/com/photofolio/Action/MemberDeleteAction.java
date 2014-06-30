@@ -20,7 +20,7 @@ public class MemberDeleteAction implements Action {
 	     	session.invalidate();
 	     
 	     String msg = "탈퇴";
-         String url = "../Sample.jsp";
+         String url = "../member/login.jsp";
 
     
 		request.setAttribute("result", result);

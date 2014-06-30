@@ -36,7 +36,7 @@ public class MemberLikemeAction implements Action{
 		
 		if(myid == null||myid.equals("")||myid.equals("null")){
 				forward.setRedirect(true);
-				forward.setPath("../Sample.jsp");
+				forward.setPath("../member/login.jsp");
 			}else{
 				forward.setRedirect(false);
 				forward.setPath("../member/likeinfo.jsp");
