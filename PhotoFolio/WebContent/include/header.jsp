@@ -54,7 +54,7 @@
 					<div class="user_info" id="loginInfoEl">
 						<a href="<%=request.getContextPath()%>/memberorder/likeinfoprocess?id=<%=session.getAttribute("id")%>" class="profile" title="내 프로필">
 							<span class="thmb">
-							<img src="<%=request.getContextPath()%>/storage/profile/<%=session.getAttribute("profileimg")%>" width="32" height="32" alt="내 프로필" onerror="this.src='/img/no32_32.jpg'">
+							<img src="<%=request.getContextPath()%>/storage/profile/<%=session.getAttribute("profileimg")%>" width="32" height="32" alt="내 프로필" onerror="this.src='../images/59410profileImage.jpg'">
 							</span>
 							<span class="mask"></span>
 						</a>
