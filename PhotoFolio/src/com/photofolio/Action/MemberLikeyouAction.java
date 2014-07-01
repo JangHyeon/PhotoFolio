@@ -19,30 +19,28 @@ public class MemberLikeyouAction implements Action {
 		
 		
 			
-		LikeinfoDAO likeinfodao = new LikeinfoDAO();
-		LikeinfoDAO  likeinfocheck = new LikeinfoDAO();
+		LikeinfoDAO likeinfodao = new LikeinfoDAO(); //info
+		LikeinfoDAO  likeinfocheck = new LikeinfoDAO();//info2
 		ModifyDAO modifydao = new ModifyDAO();
 	
 		String id = request.getParameter("id");
 		 ArrayList<Member> list = new ArrayList<Member>();
-		 ArrayList<Member> info = new ArrayList<Member>();
 		ArrayList<Member> checklist = new ArrayList<Member>();
 				 
 				 
-		info = modifydao.modifymember(id); 
-		 info = modifydao.modifymember(id);
+		 ArrayList<Member> info = new ArrayList<Member>();// 상단 페이지 회원 정보
+		 info = modifydao.modifymember(id);// 상단 페이지 회원 정보
 	   list = likeinfodao.info2(id);
        checklist = likeinfocheck.info(id);
 	   
 		
-	   for(int i =0; i<list.size();i++){
+	   for(int i =0; i<list.size();i++){//내가 추가한 친구가 맞는지 판단 하기위해 for문 사용 
 		   for(int j=0; j<checklist.size();j++){
 			   if( list.get(i).getId().equals(checklist.get(j).getId())){
 				   
-				   
+				
 				   list.get(i).setCheckintreset("true");
-				   
-                      System.out.println(list.get(i).getId()+"/"+list.get(i).getCheckintreset());
+				  
 
 				   
 			   }
@@ -65,7 +63,7 @@ public class MemberLikeyouAction implements Action {
 	      
 	      
 		 request.setAttribute("info",info);
-		 request.setAttribute("check","checkok");
+		 request.setAttribute("check","checkok");//내가 관심추가한 친구임을 판단 해주는 값
 		ActionForward forward = new ActionForward();
 	
 	if(myid == null||myid.equals("")||myid.equals("null")){

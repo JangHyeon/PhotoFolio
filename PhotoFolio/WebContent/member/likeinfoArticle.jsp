@@ -14,24 +14,18 @@
 <link type="text/css" rel="stylesheet" href="../css/common.css">
 
 <style type="text/css">
-#memberinfo{
+#likeinfoArticleview{
 	border: 2px outset ;
 	padding: 5px;
 	width: 200px;
-	height:200px;
+	height:220px;
     float:left;
     margin: 10px;
 }
 #d{
 clear: both;
 }
-#likedelete{
-border: 1px outset;
-border-color: green ;
-background-color: green;
-width: 100px;
-height:30px
-}
+
 #likeadd{
 border: 1px outset;
 width: 100px;
@@ -41,7 +35,7 @@ height:30px;
 </style>
 <%   
 String myid = (String)session.getAttribute("id");//세션에서 자신의 아이디를 불러온다
-ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");//나를 관심 or 내가 관심한 친구 리스트
+
 ArrayList<Member> info = (ArrayList<Member>)request.getAttribute("info");//해당 기준 아이디의 프로필 정보 
 ArrayList<Article> Articlelist = (ArrayList<Article>)request.getAttribute("memberArticle");//해당 기준 아이디의 프로필 정보 
 
@@ -51,6 +45,11 @@ String check = (String)request.getAttribute("check");//내가 관심or 나를 �
 String profileimg = (String)session.getAttribute("profileimg");//세션에 담긴 프로필 이미지
 String nickname = (String)session.getAttribute("nickname");//세션에 담긴 닉네임
 
+
+for(int ch=0;ch<Articlelist.size();ch++){
+	
+	System.out.println(Articlelist.get(ch).getSubject());
+}
 
 %>
 
@@ -82,34 +81,19 @@ String nickname = (String)session.getAttribute("nickname");//세션에 담긴 �
 	    
       </center>
       </div>	    
-	              <div id="likemeview" >
+	              <div id="likeinfoArticle" >
 	             
-         <%for(int j=0;j<list.size();j++){
-         
+         <% for(int i=0; i<Articlelist.size();i++){// 프로필 출력 %>
 
-         
-         %>
-      <div id="memberinfo"> 
+      <div id="likeinfoArticleview"> 
            <center>
-       			<img src="<%=request.getContextPath()%>/storage/profile/<%=list.get(j).getProfileimg()%>" style="width: 50px;height: 50px" ><br>
-		  	이름:<a href="likeinfo2process?id=<%=list.get(j).getId() %>"><%=list.get(j).getNickname()%>님 </a><br>
-		      	<%=list.get(j).getEmail()%><br>
-		    	 소개:<%=list.get(j).getMemo()%><br><br>
-		  <%if(myid.equals(id)&&check.equals("checkok")){//로그인한 아이디와 접속한페이지 아이디가 같고 메뉴가 나를 관심 추가한 친구인경우
-		  	if(list.get(j).getCheckintreset() !=null){//나를 관심추가한 친구인경우
-			 %>	 <button id="likedelete" onclick="location.href='likedelete?id=<%=list.get(j).getId()%>&myid=<%=id%>'" ><font color="yellow">★ </font>&nbsp;&nbsp;<font color="white">관심</font></button><br>
-	
-		  <% 	}else{//내가 관심 추가한 친구가 아닌경우%>
-				<button id="likeadd" onclick="location.href='likeadd?id=<%=list.get(j).getId()%>&myid=<%=id%>'" ><font >★ </font>&nbsp;&nbsp;<font >관심</font></button><br>
-				
-		<%  }%>
-		  <%}else if(myid.equals(id)&&check.equals("checkno")){//로그인한 본인 페이지이며 내가 관심추가한 친구인경우%>
-		<button id="likedelete" onclick="location.href='likedelete?id=<%=list.get(j).getId()%>&myid=<%=id%>'" ><font color="yellow">★ </font>&nbsp;&nbsp;<font color="white">관심</font></button><br>
-		      
-		 <%}%>
+       	<a href="<%=request.getContextPath()%>/boardorder/view?idx=<%=Articlelist.get(i).getIdx()%>"> <img src="<%=request.getContextPath()%>/storage/profile/<%=Articlelist.get(i).getThumbnail()%>"style="width:180px;height:180px"></a><br>
+             <%=Articlelist.get(i).getSubject() %><br>
+         <%=Articlelist.get(i).getWritedate() %><br>
 		    </center>
 	 	</div>
 	       <%} %>
+	       
 	      <div id="d"></div>
 	         
 	 
